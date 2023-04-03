@@ -1,0 +1,14 @@
+
+
+
+<div class="card" style="width: 25rem;">
+    <img [src]="singlePrd.image" class="card-img-top "style="height:20rem;" alt="...">
+    <div class="card-body">
+      <!-- <h5 class="card-title">{{singlePrd.id}}</h5> -->
+      <h5 class="card-title">{{singlePrd.title}}</h5>
+      <p class="card-text">{{singlePrd.description}}</p>
+      <div class="d-flex justify-content-md-between">
+      <button class="btn btn-danger w-100" (click)="addToCart()" style="background-color: #f68b1e;">addToCart</button>
+      <!-- <button class="btn btn-danger"(click)="backPrd()" [disabled]="singlePrd.id==1">back</button> -->
+    </div></div>
+  </div>
