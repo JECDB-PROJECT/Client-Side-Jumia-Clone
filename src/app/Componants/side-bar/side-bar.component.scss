@@ -23,6 +23,17 @@
 
     }
 }
+
 *{
   list-style-type: none;
+}
+
+
+.sidebarlink{
+    text-decoration: none;
+    color: black;
+}
+.sidebarlink:hover{
+    cursor: pointer;
+    color: orange;
 }
