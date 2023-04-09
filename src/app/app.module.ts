@@ -11,6 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthInterceptorProvider } from './auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,7 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true,
     }),
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
