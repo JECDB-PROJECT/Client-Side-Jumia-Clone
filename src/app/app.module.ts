@@ -7,24 +7,31 @@ import { HeaderComponent } from './Componants/header/header.component';
 import { FooterComponent } from './Componants/footer/footer.component';
 import { SideBarComponent } from './Componants/side-bar/side-bar.component';
 import { HomeComponent } from './Componants/home/home.component';
-import { UserCartComponent } from './Componants/user-cart/user-cart.component';
-import { NotFoundComponent } from './Componants/not-found/not-found.component';
-import { MainLayoutComponent } from './Componants/main-layout/main-layout.component';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
     SideBarComponent,
-    HomeComponent,
-    UserCartComponent,
-    NotFoundComponent,
-    MainLayoutComponent
+    HomeComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
