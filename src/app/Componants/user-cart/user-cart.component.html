@@ -1,43 +1,83 @@
-<div class="container mt-3">
-  <div class="card" style="width: 870px">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-xl-3">
-          <div>
-            <img
-              class="card-img-top"
-              src="https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/92/631762/1.jpg?6774"
-              alt="Card image"
-            />
+<div class="container text-center">
+  <div class="row">
+    <div class="container mt-2 col-md-auto">
+      <ng-container *ngFor="let prod of cartProducts.items;let i = index">
+        <div>
+          <div class="card" style="width: 870px">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-xl-3">
+                  <div>
+                    <img class="card-img-top " src="{{endpoint+'/'+prod.productId.imagePath[0]}}" alt="Card image"
+                      width="200" height="150" />
+                  </div>
+                  <span> <i class="fa-solid fa-trash"></i> Remove </span>
+                  <div></div>
+                </div>
+                <div class="col-xl-6">
+                  <h4 class="card-title">{{prod.productId.name}}</h4>
+                  <p class="card-text">
+                    {{prod.productId.description}}
+                  </p>
+                </div>
+                <div class="col-xl-3">
+                  <h2>EGP {{prod.productId.price}}</h2>
+                  <div class="col-xl-3 d-flex flex-row">
+                    <span>
+                      <button [disabled]="prod.productId.countInStock<=prod.quantity" type="button"
+                        class="btn btn-warning mx-2" (click)="increaseQuantity(i)">
+                        <i class="fa-solid fa-plus"></i>
+                      </button>
+                    </span>
+                    <h3>{{prod.quantity}}</h3>
+                    <span>
+                      <button type="button" class="btn btn-warning mx-2" [disabled]="prod.quantity<2"
+                        (click)="decreaseQuantity(i)">
+                        <i class="fa-solid fa-minus"></i>
+                      </button>
+                    </span>
+                  </div>
+                  <h2>{{ prod.productId.price*prod.quantity}}</h2>
+                </div>
+              </div>
+            </div>
+            <div></div>
           </div>
-          <span> <i class="fa-solid fa-trash"></i> Remove </span>
-          <div></div>
         </div>
-        <div class="col-xl-6">
-          <h4 class="card-title">John Doe</h4>
-          <p class="card-text">
-            Some example text some example text. John Doe is an architect and
-            engineer
-          </p>
+      </ng-container>
+    </div>
+
+
+
+    <div class="col-md-2 container2">
+      <div class="ibox">
+        <div class="ibox-title border-0">
+          <h5>Cart Summary</h5>
         </div>
-        <div class="col-xl-3">
-          <h2>EGP 844.00</h2>
-          <div class="col-xl-3 d-flex flex-row">
-            <span>
-              <button type="button" class="btn btn-warning mx-2">
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </span>
-            <h3>1</h3>
-            <span>
-              <button type="button" class="btn btn-warning mx-2">
-                <i class="fa-solid fa-minus"></i>
-              </button>
-            </span>
+        <div class="ibox-content">
+          <span>
+            <h3 class="font-bold">
+              Total
+            </h3>
+          </span>
+          <h6 class="font-bold">
+            <!-- EGP {{totalPrice | number:'1.2-3'}} -->
+          </h6>
+          <hr>
+          <span class="text-muted small">
+            *For United States, France and Germany applicable sales tax will be applied
+          </span>
+          <div class="m-t-sm">
+            <div class="card-body">
+              <button type="button" style="background-color: #f68b1e;
+                color: white;width:100% ;" id="btn" class="btn btn-block btn-lg mt-3"><i
+                  class="fa fa-shopping-cart"></i> CHECKOUT</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div></div>
+
   </div>
+
 </div>

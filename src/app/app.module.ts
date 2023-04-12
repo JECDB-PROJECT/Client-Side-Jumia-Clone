@@ -12,13 +12,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorProvider } from './auth.interceptor';
+import { UseraccountComponent } from './Componants/useraccount/useraccount.component';
+import { HelpCenterComponent } from './Componants/help-center/help-center.component';
+import { AccountoverviewComponent } from './accountoverview/accountoverview.component';
+import { UserCartComponent } from './Componants/user-cart/user-cart.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
     SideBarComponent,
-    HomeComponent
+    HomeComponent,
+    UseraccountComponent,
+    HelpCenterComponent,
+    AccountoverviewComponent,
+    UserCartComponent
     
   ],
   imports: [
