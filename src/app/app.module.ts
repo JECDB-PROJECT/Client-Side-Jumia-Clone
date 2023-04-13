@@ -16,6 +16,8 @@ import { UseraccountComponent } from './Componants/useraccount/useraccount.compo
 import { HelpCenterComponent } from './Componants/help-center/help-center.component';
 import { AccountoverviewComponent } from './accountoverview/accountoverview.component';
 import { UserCartComponent } from './Componants/user-cart/user-cart.component';
+import { SubCategProductsComponent } from './Componants/sub-categ-products/sub-categ-products.component';
+import { CategProductsComponent } from './Componants/categ-products/categ-products.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { UserCartComponent } from './Componants/user-cart/user-cart.component';
     UseraccountComponent,
     HelpCenterComponent,
     AccountoverviewComponent,
-    UserCartComponent
+    UserCartComponent,
+    SubCategProductsComponent,
+    CategProductsComponent
     
   ],
   imports: [
