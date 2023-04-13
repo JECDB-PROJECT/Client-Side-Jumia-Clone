@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LocalStorgeService } from '../localStorge/local-storge.service';
 import { Router } from '@angular/router';
 import { Icart } from 'src/app/Models/icart';
+import { Iproduct } from 'src/app/Models/iproduct';
 
 
 @Injectable({
@@ -36,7 +37,7 @@ export class ProductServicesService {
     public router: Router,
     private storageService: LocalStorgeService
   ) {
-    this.loginUserId="6430b532784509bf1c2b8732";
+    this.loginUserId="6425633cf68f40eb571fff5f";
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -64,5 +65,25 @@ export class ProductServicesService {
     )
 
   }
+
+
+
+  GetProductsBySubCate(subcate: string): Observable<Iproduct[]> {
+    return this.http.get<Iproduct[]>(
+      environment.jDBUrl + '/api/products/subcat/' + subcate, this.httpOptions).pipe(
+        catchError(this.handleError)
+      )
+  
+  }
+  
+  getProductsByCategory(cate: string) {
+    return this.http.get<Iproduct[]>(
+      environment.jDBUrl + '/api/products/cat/' + cate, this.httpOptions).pipe(
+        catchError(this.handleError)
+      )
+  
+  }
+
+
 
 }
