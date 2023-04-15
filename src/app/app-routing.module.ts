@@ -9,15 +9,19 @@ import { UseraccountComponent } from './Componants/useraccount/useraccount.compo
 import { AccountoverviewComponent } from './accountoverview/accountoverview.component';
 import { CategProductsComponent } from './Componants/categ-products/categ-products.component';
 import { SubCategProductsComponent } from './Componants/sub-categ-products/sub-categ-products.component';
+import { AboutusComponent } from './Componants/aboutus/aboutus.component';
+import { EditaccountComponent } from './Componants/editaccount/editaccount.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
   { path: 'Home', component: HomeComponent },
   { path: 'cart', component: UserCartComponent },
-  { path: 'help', component: HelpCenterComponent },
+  { path: 'help', component: HelpCenterComponent , title:'HelpCenter' },
+  {path:'about',component:AboutusComponent,title:'ABOUTUS'},
   {
-    path: 'useraccount', component: UseraccountComponent, children: [
-      { path: 'accountoverview', component: AccountoverviewComponent },
+    path: 'useraccount', component: UseraccountComponent , children: [
+      { path: 'accountoverview', component: AccountoverviewComponent, title:"My account" },
+      {path:'edituser',component:EditaccountComponent,title:"EditProfile"}
     ]
   },
   {
