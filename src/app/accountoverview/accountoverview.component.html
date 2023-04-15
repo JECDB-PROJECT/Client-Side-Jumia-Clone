@@ -1,46 +1,40 @@
 <div class="container" class="over-view">
-    <h2>Account Overview</h2>
-    <hr/>
-    <div class="row" class="overview-details">
-        <div  class="col" class="details-title d-flex">
-            <h6>ACCOUNT DETAILS</h6>
-            <a routerLink="../account_details">
-                <i class="fa-solid fa-pen"></i>
-            </a>
-        </div>
-        <hr/>
-        <div  class="col"  class="details-body">
-            <p>kareman Ahmed</p>
-            <span>karemanahmed3anm@gmail.com</span><br/><br/><br/>
-            <a routerLink="../change_password">CHANGE PASSWORD</a>
-        </div>
+  <h2>Account Overview</h2>
+  <hr />
+  <div class="row" class="overview-details">
+    <div class="col" class="details-title d-flex">
+      <h6>ACCOUNT DETAILS</h6>
+      <a routerLink="/useraccount/edituser">
+        <i class="fa-solid fa-pen"> </i>
+      </a>
     </div>
-  
-  
-    <div class="overview-details">
-      <div class="details-title d-flex">
-          <h6>ADDRESS BOOK</h6>
-          <a routerLink="../ADDRESS BOOK">
-              <i class="fa-solid fa-pen"></i>
-          </a>
-      </div>
-      <hr/>
-      <div class="details-body">
-          <p>Your default shipping address:</p>
-          <span>
-  
-            kareman Ahmed
-  
-            سوهاج - اخميم -السلامونى
-  
-            Sohag, Sohag
-  
-            +20 1121790720</span><br/><br/><br/>
-  
-      </div>
+    <hr />
+    <div class="col" class="details-body">
+      <p>{{ User.name }}</p>
+      <span>{{ User.email }}</span
+      ><br /><br /><br />
+      <p>{{ User.phone }}</p>
+      <a routerLink="../change_password"></a>
+    </div>
   </div>
+
+  <div class="overview-details">
+    <div class="details-title d-flex">
+      <h6>ADDRESS BOOK</h6>
+      <a routerLink="../ADDRESS BOOK">
+        <i class="fa-solid fa-pen"></i>
+      </a>
+    </div>
+    <hr />
+    <div class="details-body">
+      <p>Your default shipping address:</p>
+      <span>
+        kareman Ahmed سوهاج - اخميم -السلامونى Sohag, Sohag +20 1121790720</span
+      ><br /><br /><br />
+    </div>
   </div>
-  <!-- <div class="container text-center" class="over-view">
+</div>
+<!-- <div class="container text-center" class="over-view">
     <h2>Account Overview</h2>
     <hr/>
     <div class="row" class="overview-details">
@@ -67,4 +61,3 @@
     </div>
   </div>
    -->
-  
