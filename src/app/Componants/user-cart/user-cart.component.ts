@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Icart } from 'src/app/Models/icart';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
@@ -11,115 +11,74 @@ import { environment } from 'src/environments/environment';
   templateUrl: './user-cart.component.html',
   styleUrls: ['./user-cart.component.scss']
 })
-export class UserCartComponent implements OnInit,OnChanges{
-  userId: string="6425633cf68f40eb571fff5f";
+export class UserCartComponent implements OnInit, OnChanges {
+  [x: string]: any;
   cartProducts: Icart;
-  subscription!:Subscription;
-  endpoint:any;
-
-   // cartProductstest: Icart;
-  // testProducts: string[];
-  constructor(private prdservice: ProductServicesService){
-    this.endpoint=environment.jDBUrl
-
-    this.cartProducts={
-      _id:"",
-      items:[
-      {
-        price: 100,
-        productId: {
-          _id: "642c1754ff89ab6980edd0a9",
-              name: "Patio-Lawn-Garden",
-              imagePath: [
-                "uploads\\2023-04-04T12-25-56.169Z-child1.2.jpg",
-                "uploads\\2023-04-04T12-25-56.169Z-child1.3.jpg",
-                "uploads\\2023-04-04T12-25-56.170Z-child1.4.jpg"
-              ],
-              description: "Order From Jumia express items and get free shipping.",
-              price: 170,
-              totalPrice: 0,
-              category: '',
-              arcategory: '',
-              subcategory: '',
-              arsubcategory: '',
-              ratings: 1,
-              ardescription: '',
-              countInStock: 10,
-              isDeleted: false,
-              createdAt: {},
-              updatedAt: {}
-        },
-        quantity: 1,
-        sellerId:""
-      },
-      {
-        price: 100,
-        productId: {
-          _id: "642c1754ff89ab6980edd0a9",
-              name: "Patio-Lawn-Garden",
-              imagePath: [
-                "uploads\\2023-04-04T12-25-56.169Z-child1.2.jpg",
-                "uploads\\2023-04-04T12-25-56.169Z-child1.3.jpg",
-                "uploads\\2023-04-04T12-25-56.170Z-child1.4.jpg"
-              ],
-              description: "Order From Jumia express items and get free shipping.",
-              price: 170,
-              totalPrice: 0,
-              category: '',
-              arcategory: '',
-              subcategory: '',
-              arsubcategory: '',
-              ratings: 1,
-              ardescription: '',
-              countInStock: 10,
-              isDeleted: false,
-              createdAt: {},
-              updatedAt: {}
-        },
-        quantity: 1,
-        sellerId:""
-      }
-    ],
-    userId:this.userId,
-  totalPrice:100
-  };
+  subscription!: Subscription;
+  endpoint: any;
+  totalPriceCart: number = 0;
+  
+  constructor(private prdservice: ProductServicesService , private router:Router) {
+    this.endpoint = environment.jDBUrl
 
   }
   ngOnChanges(changes: SimpleChanges): void {
     //var countInstock=cartProducts..productId.countInStock
   }
-   ngOnInit(): void {
+  ngOnInit(): void {
     //this.cartProducts=this.prdservice.getUserCart(this.userId);
-    this.subscription=this.prdservice.getUserCart(this.userId).subscribe(data=>{
-      console.log('user data is *********> ',data);
-      this.cartProducts=data;
-      console.log('user data is --------> ',this.cartProducts);
+    this.subscription = this.prdservice.getUserCart().subscribe(data => {
+      console.log('user data is *********> ', data);
+      this.cartProducts = data[0];
+      this.cartProducts?.items?.map((item) => {
+        this.totalPriceCart = this.totalPriceCart + (item.productId.price * item.quantity)
+      })
+      console.log('user data is --------> ', this.cartProducts);
     })
 
 
 
   }
 
-  private getCartProducts()
-{
+  private getCartProducts() {
 
-    this.subscription=this.prdservice.getUserCart(this.userId).subscribe(data=>{
-      this.cartProducts=data;
+    this.subscription = this.prdservice.getUserCart().subscribe(data => {
+      this.cartProducts = data;
     })
 
-}
+  }
 
 
- increaseQuantity(i:any){
-  console.log(this.cartProducts.items[i].quantity);
-  this.cartProducts.items[i].quantity++;
-  console.log(this.cartProducts.items[i].quantity);
+  increaseQuantity(i: number, price: number) {
+    console.log(this.cartProducts.items[i].quantity);
+    this.cartProducts.items[i].quantity++;
+    console.log(this.cartProducts.items[i].quantity);
+    this.totalPriceCart = this.totalPriceCart + price
+  }
+  decreaseQuantity(i: number, price: number) {
+    console.log(this.cartProducts.items[i].quantity);
+    this.cartProducts.items[i].quantity--
+    console.log(this.cartProducts.items[i].quantity);
+    this.totalPriceCart = this.totalPriceCart - price
+  }
 
-}
- decreaseQuantity(i:any){
-  console.log(this.cartProducts.items[i].quantity);
-  this.cartProducts.items[i].quantity--
-  console.log(this.cartProducts.items[i].quantity);
-}
+
+  onDeleteItem(cartId: any, prodId: any) {
+    console.log(prodId)
+    this.prdservice.deleteItemFromCart(cartId, prodId).subscribe()
+    this.router.navigate(["/cart"])
+  }
+
+
+
+
+  onCheckout():void{
+    // this.httpClient.post('http://localhost:4200/checkout',{items:this.cartProducts.items})
+    // .subscribe(async (res:any) => {
+    //   let stripe=await loadStripe('pk_test_51MwpKwL91jneEfqmxDgzybtIj4as6QPKXd2R0kRxIGQovhXSzSChRdXJE5nsr21tQgQFGYjFXb227UvWuIhoI0LA00sWiPoUXi');
+    //   stripe?.redirectToCheckout({sessionId:res.id})
+    // })
+    }
+
 
 }
