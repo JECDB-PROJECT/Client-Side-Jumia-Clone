@@ -18,6 +18,8 @@ import { AccountoverviewComponent } from './accountoverview/accountoverview.comp
 import { UserCartComponent } from './Componants/user-cart/user-cart.component';
 import { SubCategProductsComponent } from './Componants/sub-categ-products/sub-categ-products.component';
 import { CategProductsComponent } from './Componants/categ-products/categ-products.component';
+import { AboutusComponent } from './Componants/aboutus/aboutus.component';
+import { EditaccountComponent } from './Componants/editaccount/editaccount.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { CategProductsComponent } from './Componants/categ-products/categ-produc
     AccountoverviewComponent,
     UserCartComponent,
     SubCategProductsComponent,
-    CategProductsComponent
+    CategProductsComponent,
+    AboutusComponent,
+    EditaccountComponent
     
   ],
   imports: [
