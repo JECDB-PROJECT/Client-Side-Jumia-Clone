@@ -58,17 +58,13 @@ footer .FOOTERROW div:nth-child(3) div div img {
   margin-top: -8px;
 }
 
-footer .FOOTERROW div:nth-child(3) div div img:hover {
-  border-color: #ff9900;
-}
-
 .btnn {
   margin-right: 10px;
   margin-left: 5px;
 }
 
 .container {
-  padding-bottom: 80px;
+  padding-bottom: 30px;
 }
 
 #icon i {
@@ -83,15 +79,24 @@ footer .FOOTERROW div:nth-child(3) div div img:hover {
 a {
   text-decoration: none;
 }
+
 a:hover {
-  -webkit-text-decoration: solid;
-          text-decoration: solid;
+  -webkit-text-decoration: underline white;
+          text-decoration: underline white;
 }
 
-hr {
-  margin: 1rem 0;
-  color: inherit;
-  background-color: currentColor;
-  border: 0;
-  opacity: 0.25;
+#icon i:hover {
+  color: #ff9900;
+}
+
+.classcolor {
+  background-color: #636262;
+}
+
+h6 {
+  color: white;
+}
+
+.btn12 button:hover {
+  color: #ff9900;
 }/*# sourceMappingURL=footer.component.css.map */
