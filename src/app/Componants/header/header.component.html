@@ -17,8 +17,10 @@
       <span><a href="#"><img src="../../../assets/images/pay1.jpg" alt="" height="35px"
             class="rounded-circle"></a></span>
       <span>
-        <span class="p-1"><a href="#"><img src="../../../assets/images/en.png" alt="" width="14px">English |</a></span>
-        <span class="p-1"><a href="#"><img src="../../../assets/images/ar.png" alt="" width="14px">عربى</a></span>
+        <span class="p-1" (click)="changeCurrentLang('en')"><img src="../../../assets/images/en.png" alt=""
+            width="14px">English |</span>
+        <span class="p-1" (click)="changeCurrentLang('ar')"><img src="../../../assets/images/ar.png" alt=""
+            width="14px">عربى</span>
       </span>
     </div>
     <div class="col-xl-2"></div>
@@ -88,8 +90,8 @@
             <i id="navs" style="font-weight: bold;font-size: 20px" class="bi bi-cart4 position-relative m-3">
               <span style="font-size: 13px;background-color: #FF9900;"
                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning"
-                [hidden]="cartProducts.items.length<1">
-                {{cartProducts.items.length}}
+                [hidden]="len<1">
+                {{len}}
                 <span class="visually-hidden">unread messages</span>
               </span>
             </i>
