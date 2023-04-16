@@ -1,4 +1,4 @@
-import { Iproduct } from "./iproduct";
+import { Iproduct } from "./iproductCart";
 
 export interface Icart {
     _id?:string,
