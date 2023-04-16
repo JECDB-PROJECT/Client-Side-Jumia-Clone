@@ -13,14 +13,14 @@ import { environment } from 'src/environments/environment';
 export class ProductDetailsComponent implements OnInit {
 
   product: IProduct | undefined = undefined;
-  prodId: string ;
-  stok:number = 9;
-  endpoint:any;
+  prodId: string;
+  stok: number = 9;
+  endpoint: any;
 
-  data=null
+  data = null
 
-  constructor(private activatedRoute: ActivatedRoute, private prodService: ProductService , private prdservice: ProductServicesService ){
-    this.endpoint=environment.jDBUrl
+  constructor(private activatedRoute: ActivatedRoute, private prodService: ProductService, private prdservice: ProductServicesService) {
+    this.endpoint = environment.jDBUrl
   }
   ngOnInit(): void {
     this.productDetails()
@@ -28,18 +28,24 @@ export class ProductDetailsComponent implements OnInit {
 
 
   productDetails() {
-    this.activatedRoute.paramMap.subscribe((paramMap)=>{
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
       this.prodId = paramMap.get('prodId');
-      this.prodService.getProductById(this.prodId).subscribe((prod)=>{
+      this.prodService.getProductById(this.prodId).subscribe((prod) => {
         this.product = prod;
       })
     })
   }
 
 
-  addToCart(id:any){
+  addToCart(id: any) {
 
-    this.data= {items:{productId:id}}
-    this.prdservice.addToUserCart(this.data).subscribe()
+    this.data = { items: { productId: id } }
+    this.prdservice.addToUserCart(this.data).subscribe(data => {
+      this.prdservice.getUserCart().subscribe(data => {
+        this.prdservice.emit<number>(data[0].items.length);
+
+      })
+    })
+
   }
 }
