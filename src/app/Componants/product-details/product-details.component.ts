@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/Models/iproduct';
 import { ProductService } from 'src/app/Services/product/product.service';
+import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -16,7 +17,9 @@ export class ProductDetailsComponent implements OnInit {
   stok:number = 9;
   endpoint:any;
 
-  constructor(private activatedRoute: ActivatedRoute, private prodService: ProductService){
+  data=null
+
+  constructor(private activatedRoute: ActivatedRoute, private prodService: ProductService , private prdservice: ProductServicesService ){
     this.endpoint=environment.jDBUrl
   }
   ngOnInit(): void {
@@ -31,5 +34,12 @@ export class ProductDetailsComponent implements OnInit {
         this.product = prod;
       })
     })
+  }
+
+
+  addToCart(id:any){
+
+    this.data= {items:{productId:id}}
+    this.prdservice.addToUserCart(this.data).subscribe()
   }
 }

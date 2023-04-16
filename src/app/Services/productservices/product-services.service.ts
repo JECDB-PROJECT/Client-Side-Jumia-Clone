@@ -30,6 +30,8 @@ export class ProductServicesService {
   }
   httpOptions = {};
 
+  items=[{productId:Object("")}]
+
 
   constructor(
     private toastr: ToastrService,
@@ -86,6 +88,17 @@ export class ProductServicesService {
 
   }
 
+
+  addToUserCart(data: any) {
+    
+    alert("bbbbbb")
+
+    return this.http.post<any>(
+      environment.jDBUrl + '/api/cart/addToCart' , data ,this.httpOptions).pipe(
+        catchError(this.handleError)
+      )
+
+  }
 
 
 }

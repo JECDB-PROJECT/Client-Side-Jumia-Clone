@@ -28,7 +28,7 @@
                     <div class="card-text" *ngIf="product.countInStock < 1">
                         <p class="text-muted">Out of stock</p>
                     </div>
-                    <button type="button" class="btn cardButton text-light">ADD TO CARD</button>
+                    <button type="button" class="btn cardButton text-light" (click)="addToCart(product._id)">ADD TO CART</button>
                     <hr>
                 </div>
             </div>
