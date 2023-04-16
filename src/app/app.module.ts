@@ -20,6 +20,7 @@ import { SubCategProductsComponent } from './Componants/sub-categ-products/sub-c
 import { CategProductsComponent } from './Componants/categ-products/categ-products.component';
 import { AboutusComponent } from './Componants/aboutus/aboutus.component';
 import { EditaccountComponent } from './Componants/editaccount/editaccount.component';
+import { ProductDetailsComponent } from './Componants/product-details/product-details.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { EditaccountComponent } from './Componants/editaccount/editaccount.compo
     SubCategProductsComponent,
     CategProductsComponent,
     AboutusComponent,
-    EditaccountComponent
+    EditaccountComponent,
+    ProductDetailsComponent
     
   ],
   imports: [
