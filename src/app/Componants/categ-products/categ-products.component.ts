@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Iproduct } from 'src/app/Models/iproduct';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Iproduct } from 'src/app/Models/iproductCart';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class CategProductsComponent implements OnInit {
   cate:string="";
   Products:Iproduct[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute , private prdServe:ProductServicesService){
+  constructor(private activatedRoute: ActivatedRoute , private prdServe:ProductServicesService , private router: Router){
 
   }
 
@@ -29,5 +29,10 @@ export class CategProductsComponent implements OnInit {
     
     })
   }
+
+
+  ProductDetails(prodId: string){
+    this.router.navigate(['products',prodId])
+}
 
 }

@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LocalStorgeService } from '../localStorge/local-storge.service';
 import { Router } from '@angular/router';
 import { Icart } from 'src/app/Models/icart';
-import { Iproduct } from 'src/app/Models/iproduct';
+import { Iproduct } from 'src/app/Models/iproductCart';
 
 
 @Injectable({

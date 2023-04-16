@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Iproduct } from 'src/app/Models/iproduct';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Iproduct } from 'src/app/Models/iproductCart';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
 
 @Component({
@@ -10,23 +10,30 @@ import { ProductServicesService } from 'src/app/Services/productservices/product
 })
 export class SubCategProductsComponent implements OnInit {
 
-  subCateg:string=""
-  Products:Iproduct[] = [];
-  constructor(private activatedRoute: ActivatedRoute , private prdServe:ProductServicesService){
+  subCateg: string = ""
+  Products: Iproduct[] = [];
+  constructor(private activatedRoute: ActivatedRoute, private prdServe: ProductServicesService , private router: Router) {
 
   }
 
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(
-      (paramMap)=>{this.subCateg = String(paramMap.get('id'))
-    
-      this.prdServe.GetProductsBySubCate(this.subCateg).subscribe(products => {
-        this.Products = products;
-        console.log(this.Products)
-      })
-    
-    })
+      (paramMap) => {
+        this.subCateg = String(paramMap.get('id'))
 
+        this.prdServe.GetProductsBySubCate(this.subCateg).subscribe(products => {
+          this.Products = products;
+          console.log(this.Products)
+        })
+
+      })
+
+  }
+
+
+
+  ProductDetails(prodId: string){
+    this.router.navigate(['products',prodId])
 }
 }

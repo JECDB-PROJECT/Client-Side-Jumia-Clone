@@ -1,31 +1,13 @@
 <div class="mainDiv">
     <div class="container">
         <app-side-bar></app-side-bar>
-        <section class="d-flex flex-wrap col-12">
-            <!-- <div class="card col-md-3">
-            <img class="card-img-top" [src]="prod.imagePath[0]" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">{{prod.name.slice(0, 25)}}</p>
-                <div class="price">
-                    <span></span>
-                    <div class="rate">
-                        <i class="fa-sharp fa-solid fa-star"></i>
-                        <i class="fa-sharp fa-solid fa-star"></i>
-                        <i class="fa-sharp fa-solid fa-star"></i>
-                        <i class="fa-sharp fa-solid fa-star"></i>
-                        <i class="fa-sharp fa-solid fa-star"></i>
-                    </div>
+        <section class="d-flex flex-wrap col-12 justify-content-between">
+            <div *ngFor="let prod of childFashions" class="product col-md-2">
+                <div class="product2" (click)="ProductDetails(prod._id)">
+                    <a  ><img [src]=" 'http://localhost:3030/' + prod.imagePath[0]" alt="" class="myHomeImg"></a>
+                    <p><a >{{prod.name.slice(0, 25)}}</a></p>
                 </div>
-                <p class="card-title">Free Shipping</p>
-                <a href="#" class="btn btn-primary">ADD TO CART</a>
-            </div>
-        </div> -->
-            <div *ngFor="let prod of products" class="product col-md-2">
-                <div class="product2">
-                    <a href=><img [src]="prod.imagePath[0]" alt="" class="myHomeImg"></a>
-                    <p><a href=>{{prod.name.slice(0, 25)}}</a></p>
-                </div>
-                <div class="price">
+                <div class="price" >
                     EGP{{prod.price}}
                 </div>
                 <div class="progress progressimg">
@@ -42,13 +24,13 @@
             <a><img class="col-6" src="../../../assets/images/home/TVs3.png" alt=""></a>
             <a><img class="col-6" src="../../../assets/images/home/DeodorantsXFLOORDESKTOPEN.jpg" alt=""></a>
         </div>
-        <section class="d-flex flex-wrap col-12">
-            <div *ngFor="let prod of products" class="product col-md-2">
-                <div class="product2">
-                    <a href=><img [src]="prod.imagePath[0]" alt="" class="myHomeImg"></a>
-                    <p><a href=>{{prod.name.slice(0, 25)}}</a></p>
+        <section class="d-flex flex-wrap col-12 justify-content-between">
+            <div *ngFor="let prod of homeAppliances" class="product col-md-2">
+                <div class="product2" (click)="ProductDetails(prod._id)">
+                    <a  ><img [src]=" 'http://localhost:3030/' + prod.imagePath[0]" alt="" class="myHomeImg"></a>
+                    <p><a >{{prod.name.slice(0, 25)}}</a></p>
                 </div>
-                <div class="price">
+                <div class="price" >
                     EGP{{prod.price}}
                 </div>
                 <div class="progress progressimg">
@@ -65,13 +47,13 @@
             <a><img class="col-2" src="../../../assets/images/home/YY.png" alt=""></a>
             <a><img class="col-2" src="../../../assets/images/home/XX.png" alt=""></a>
         </div>
-        <section class="d-flex flex-wrap col-12">
-            <div *ngFor="let prod of products" class="product col-md-2">
-                <div class="product2">
-                    <a href=><img [src]="prod.imagePath[0]" alt="" class="myHomeImg"></a>
-                    <p><a href=>{{prod.name.slice(0, 25)}}</a></p>
+        <section class="d-flex flex-wrap col-12 justify-content-between">
+            <div *ngFor="let prod of womenSprtswear" class="product col-md-2">
+                <div class="product2" (click)="ProductDetails(prod._id)">
+                    <a  ><img [src]=" 'http://localhost:3030/' + prod.imagePath[0]" alt="" class="myHomeImg"></a>
+                    <p><a >{{prod.name.slice(0, 25)}}</a></p>
                 </div>
-                <div class="price">
+                <div class="price" >
                     EGP{{prod.price}}
                 </div>
                 <div class="progress progressimg">
