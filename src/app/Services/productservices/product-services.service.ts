@@ -29,8 +29,15 @@ export class ProductServicesService {
     return throwError(msg);
   }
   httpOptions = {};
-
-  items=[{productId:Object("")}]
+  public subject=new BehaviorSubject<any>('')
+  emit<T>(data:T){
+    this.subject.next(data)
+  }
+  on<T>():Observable<T>{
+    return this.subject.asObservable()
+  }
+  
+  items = [{ productId: Object("") }]
 
 
   constructor(
@@ -90,15 +97,21 @@ export class ProductServicesService {
 
 
   addToUserCart(data: any) {
-    
-    alert("bbbbbb")
 
     return this.http.post<any>(
-      environment.jDBUrl + '/api/cart/addToCart' , data ,this.httpOptions).pipe(
+      environment.jDBUrl + '/api/cart/addToCart', data, this.httpOptions).pipe(
         catchError(this.handleError)
       )
 
   }
 
+
+  increaseQuantity(cartId: string, productId: string): Observable<Icart> {
+    return this.http.put<Icart>(environment.jDBUrl + '/api/cart/increaseQuantity/' + cartId + '/' + productId, this.httpOptions)
+  }
+
+  decreaseQuantity(cartId: string, productId: string): Observable<Icart> {
+    return this.http.put<Icart>(environment.jDBUrl + '/api/cart/decreaseQuantity/' + cartId + '/' + productId, this.httpOptions)
+  }
 
 }
