@@ -17,8 +17,8 @@ export class UserCartComponent implements OnInit, OnChanges {
   subscription!: Subscription;
   endpoint: any;
   totalPriceCart: number = 0;
-  
-  constructor(private prdservice: ProductServicesService , private router:Router) {
+  len: number = 0
+  constructor(private prdservice: ProductServicesService, private router: Router) {
     this.endpoint = environment.jDBUrl
 
   }
@@ -27,15 +27,15 @@ export class UserCartComponent implements OnInit, OnChanges {
   }
   ngOnInit(): void {
     //this.cartProducts=this.prdservice.getUserCart(this.userId);
-    this.subscription = this.prdservice.getUserCart().subscribe(data => {
-      console.log('user data is *********> ', data);
-      this.cartProducts = data[0];
-      this.cartProducts?.items?.map((item) => {
-        this.totalPriceCart = this.totalPriceCart + (item.productId.price * item.quantity)
-      })
-      console.log('user data is --------> ', this.cartProducts);
-    })
-
+    // this.subscription = this.prdservice.getUserCart().subscribe(data => {
+    //   console.log('user data is *********> ', data);
+    //   this.cartProducts = data[0];
+    //   this.cartProducts?.items?.map((item) => {
+    //     this.totalPriceCart = this.totalPriceCart + (item.productId.price * item.quantity)
+    //   })
+    //   console.log('user data is --------> ', this.cartProducts);
+    // })
+    this.getCard()
 
 
   }
@@ -49,36 +49,49 @@ export class UserCartComponent implements OnInit, OnChanges {
   }
 
 
-  increaseQuantity(i: number, price: number) {
-    console.log(this.cartProducts.items[i].quantity);
-    this.cartProducts.items[i].quantity++;
-    console.log(this.cartProducts.items[i].quantity);
-    this.totalPriceCart = this.totalPriceCart + price
+  increaseQuantity(cartId: any, productId: any) {
+    this.prdservice.increaseQuantity(cartId, productId).subscribe(data => {
+      this.getCard()
+    })
   }
-  decreaseQuantity(i: number, price: number) {
-    console.log(this.cartProducts.items[i].quantity);
-    this.cartProducts.items[i].quantity--
-    console.log(this.cartProducts.items[i].quantity);
-    this.totalPriceCart = this.totalPriceCart - price
+  decreaseQuantity(cartId: any, productId: any) {
+    this.prdservice.decreaseQuantity(cartId, productId).subscribe(data => {
+      this.getCard()
+    })
   }
 
 
   onDeleteItem(cartId: any, prodId: any) {
     console.log(prodId)
-    this.prdservice.deleteItemFromCart(cartId, prodId).subscribe()
-    this.router.navigate(["/cart"])
+    this.prdservice.deleteItemFromCart(cartId, prodId).subscribe(data => {
+      this.getCard()
+    })
+
   }
 
 
+  getCard(): void {
+    this.totalPriceCart = 0
+    this.subscription = this.prdservice.getUserCart().subscribe(data => {
+      console.log('user data is *********> ', data);
+      this.len = data[0].items.length
+      this.prdservice.emit<number>(this.len);
+      this.cartProducts = data[0];
+      this.cartProducts?.items?.map((item) => {
+        this.totalPriceCart = this.totalPriceCart + (item.productId.price * item.quantity)
+      })
+      console.log('user data is --------> ', this.cartProducts);
+    })
+  }
 
 
-  onCheckout():void{
+  onCheckout(): void {
     // this.httpClient.post('http://localhost:4200/checkout',{items:this.cartProducts.items})
     // .subscribe(async (res:any) => {
     //   let stripe=await loadStripe('pk_test_51MwpKwL91jneEfqmxDgzybtIj4as6QPKXd2R0kRxIGQovhXSzSChRdXJE5nsr21tQgQFGYjFXb227UvWuIhoI0LA00sWiPoUXi');
     //   stripe?.redirectToCheckout({sessionId:res.id})
     // })
-    }
+  }
 
 
 }
