@@ -12,7 +12,9 @@ export class SubCategProductsComponent implements OnInit {
 
   subCateg: string = ""
   Products: Iproduct[] = [];
-  constructor(private activatedRoute: ActivatedRoute, private prdServe: ProductServicesService , private router: Router) {
+  data = null
+
+  constructor(private activatedRoute: ActivatedRoute, private prdServe: ProductServicesService, private router: Router) {
 
   }
 
@@ -33,7 +35,20 @@ export class SubCategProductsComponent implements OnInit {
 
 
 
-  ProductDetails(prodId: string){
-    this.router.navigate(['products',prodId])
-}
+  ProductDetails(prodId: string) {
+    this.router.navigate(['products', prodId])
+  }
+
+
+  addToCart(id: any) {
+
+    this.data = { items: { productId: id } }
+    this.prdServe.addToUserCart(this.data).subscribe(data => {
+      this.prdServe.getUserCart().subscribe(data => {
+        this.prdServe.emit<number>(data[0].items.length);
+
+      })
+    })
+
+  }
 }

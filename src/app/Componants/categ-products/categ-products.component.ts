@@ -10,29 +10,47 @@ import { ProductServicesService } from 'src/app/Services/productservices/product
 })
 export class CategProductsComponent implements OnInit {
 
-  cate:string="";
-  Products:Iproduct[] = [];
+  cate: string = "";
+  Products: Iproduct[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute , private prdServe:ProductServicesService , private router: Router){
+  data = null
+
+
+  constructor(private activatedRoute: ActivatedRoute, private prdServe: ProductServicesService, private router: Router) {
 
   }
 
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(
-      (paramMap)=>{this.cate = String(paramMap.get('id'))
-    
-      this.prdServe.getProductsByCategory(this.cate).subscribe(products => {
-        this.Products = products;
-        console.log(this.Products)
+      (paramMap) => {
+        this.cate = String(paramMap.get('id'))
+
+        this.prdServe.getProductsByCategory(this.cate).subscribe(products => {
+          this.Products = products;
+          console.log(this.Products)
+        })
+
       })
-    
-    })
   }
 
 
-  ProductDetails(prodId: string){
-    this.router.navigate(['products',prodId])
-}
+  ProductDetails(prodId: string) {
+    this.router.navigate(['products', prodId])
+  }
+
+
+
+  addToCart(id: any) {
+
+    this.data = { items: { productId: id } }
+    this.prdServe.addToUserCart(this.data).subscribe(data => {
+      this.prdServe.getUserCart().subscribe(data => {
+        this.prdServe.emit<number>(data[0].items.length);
+
+      })
+    })
+
+  }
 
 }
