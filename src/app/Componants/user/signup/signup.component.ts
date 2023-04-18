@@ -4,6 +4,7 @@ import { Iuser } from 'src/app/Models/iuser';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-signup',
@@ -21,13 +22,16 @@ export class SignupComponent {
   namePattern = "[A-Za-z]{3,30}";
   passwordPattern = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[*.!@$%^&(){}[]:;,.?/~_+-=|\]).{8,32}$";
   number = "(01)[0-9]{9}";
+  currentLang: string;
 
   constructor(
     private toastr: ToastrService,
     private fb: FormBuilder,
     private authService: UserAuthService,
     private router: Router,
-  ) {
+    public translate:TranslateService,
+    ) { this.currentLang=localStorage.getItem('current_lang')||'en';
+    this.translate.use(this.currentLang)
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.pattern(this.namePattern)]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailPattern)]],

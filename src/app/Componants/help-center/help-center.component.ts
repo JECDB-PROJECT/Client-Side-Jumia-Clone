@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./help-center.component.scss']
 })
 export class HelpCenterComponent {
-
+  currentLang: string =localStorage.getItem('current_lang') || 'en'; 
 }
