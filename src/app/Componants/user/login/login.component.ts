@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Iuser } from 'src/app/Models/iuser';
 import { UserAuthService } from 'src/app/Services/user/user-auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent {
 
   user1: Iuser
-
+  
   form: FormGroup;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  constructor(private fb: FormBuilder, private toastr: ToastrService, private authService: UserAuthService) {
+  currentLang:string;
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private authService: UserAuthService, public translate:TranslateService) {
+    this.currentLang=localStorage.getItem('current_lang')||'en';
+    this.translate.use(this.currentLang)
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       password: ['', [Validators.required, Validators.minLength(7)]]

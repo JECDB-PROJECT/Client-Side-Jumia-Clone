@@ -22,7 +22,12 @@ import { AboutusComponent } from './Componants/aboutus/aboutus.component';
 import { EditaccountComponent } from './Componants/editaccount/editaccount.component';
 import { ProductDetailsComponent } from './Componants/product-details/product-details.component';
 import { ProductsOfSearchComponent } from './Componants/products-of-search/products-of-search.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function createTranslateloader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/','.json');
+}
 
 @NgModule({
   declarations: [
@@ -54,6 +59,14 @@ import { ProductsOfSearchComponent } from './Componants/products-of-search/produ
       timeOut: 10000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
+    }),
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateloader,
+        deps: [HttpClient]
+      }
     }),
   ],
   providers: [AuthInterceptorProvider],
