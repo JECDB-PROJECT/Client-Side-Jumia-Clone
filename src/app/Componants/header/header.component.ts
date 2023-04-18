@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
 
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
   len: number = 0
   currentLang: string = localStorage.getItem('current_lang') || 'en';;
   // translate: TranslateService;
-  constructor(private prdservice: ProductServicesService) {
+  constructor(private prdservice: ProductServicesService , private router:Router) {
     // this.currentLang = localStorage.getItem('current_lang') || 'en';
   }
   ngOnInit(): void {
@@ -38,6 +39,14 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('current_lang', lang);
     this.currentLang = lang;
     window.location.reload()
+
+  }
+
+
+  searchInput(input:string){
+
+    this.router.navigate(["search/"+input])
+    
 
   }
 }
