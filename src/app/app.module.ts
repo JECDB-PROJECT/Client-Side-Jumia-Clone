@@ -21,6 +21,7 @@ import { CategProductsComponent } from './Componants/categ-products/categ-produc
 import { AboutusComponent } from './Componants/aboutus/aboutus.component';
 import { EditaccountComponent } from './Componants/editaccount/editaccount.component';
 import { ProductDetailsComponent } from './Componants/product-details/product-details.component';
+import { ProductsOfSearchComponent } from './Componants/products-of-search/products-of-search.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ProductDetailsComponent } from './Componants/product-details/product-de
     CategProductsComponent,
     AboutusComponent,
     EditaccountComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ProductsOfSearchComponent
     
   ],
   imports: [

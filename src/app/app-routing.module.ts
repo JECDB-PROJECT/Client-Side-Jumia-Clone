@@ -12,6 +12,7 @@ import { SubCategProductsComponent } from './Componants/sub-categ-products/sub-c
 import { AboutusComponent } from './Componants/aboutus/aboutus.component';
 import { EditaccountComponent } from './Componants/editaccount/editaccount.component';
 import { ProductDetailsComponent } from './Componants/product-details/product-details.component';
+import { ProductsOfSearchComponent } from './Componants/products-of-search/products-of-search.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'cart', component: UserCartComponent },
   { path: 'help', component: HelpCenterComponent , title:'HelpCenter' },
   {path:'about',component:AboutusComponent,title:'ABOUTUS'},
+  {path:"search/:srch",component:ProductsOfSearchComponent},
   {
     path: 'useraccount', component: UseraccountComponent , children: [
       { path: 'accountoverview', component: AccountoverviewComponent, title:"My account" },
