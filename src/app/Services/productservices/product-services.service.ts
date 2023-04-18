@@ -29,6 +29,7 @@ export class ProductServicesService {
     return throwError(msg);
   }
   httpOptions = {};
+
   public subject=new BehaviorSubject<any>('')
   emit<T>(data:T){
     this.subject.next(data)
@@ -46,7 +47,6 @@ export class ProductServicesService {
     public router: Router,
     private storageService: LocalStorgeService
   ) {
-    this.loginUserId = "6425633cf68f40eb571fff5f";
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -112,6 +112,21 @@ export class ProductServicesService {
 
   decreaseQuantity(cartId: string, productId: string): Observable<Icart> {
     return this.http.put<Icart>(environment.jDBUrl + '/api/cart/decreaseQuantity/' + cartId + '/' + productId, this.httpOptions)
+  }
+
+
+  getProductsOfSearch(input: string) {
+    let data = {search:input}
+
+    console.log(data);
+
+    return this.http.post<Iproduct[]>(
+      environment.jDBUrl + `/api/products/search`, data ,this.httpOptions).pipe(
+        catchError(this.handleError)
+      )
+
+      
+
   }
 
 }
