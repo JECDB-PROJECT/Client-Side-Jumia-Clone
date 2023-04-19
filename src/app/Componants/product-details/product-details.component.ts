@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { IProduct } from 'src/app/Models/iproduct';
 import { ProductService } from 'src/app/Services/product/product.service';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
+import { WishListService } from 'src/app/Services/wichList/wish-list.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -18,8 +20,9 @@ export class ProductDetailsComponent implements OnInit {
   endpoint: any;
 
   data = null
+  data2 = null
 
-  constructor(private activatedRoute: ActivatedRoute, private prodService: ProductService, private prdservice: ProductServicesService) {
+  constructor(private activatedRoute: ActivatedRoute , private toastr: ToastrService, private prodService: ProductService, private prdservice: ProductServicesService , private wishList : WishListService) {
     this.endpoint = environment.jDBUrl
   }
   ngOnInit(): void {
@@ -47,5 +50,15 @@ export class ProductDetailsComponent implements OnInit {
       })
     })
 
+  }
+
+
+  addToWishLIst(prdId:any){
+    this.data2 = { items: { productId: prdId } }
+    this.wishList.addUserToWichList(this.data2).subscribe(data=>{
+      // this.toastr.show(data)
+      console.log(data);
+      
+    })
   }
 }

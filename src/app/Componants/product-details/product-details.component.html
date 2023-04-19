@@ -1,23 +1,14 @@
-<!-- <div class="card product-details" style="width: 18rem;" appBorderBox>
-    <img [src]=" 'http://localhost:3030/' + product?.imagePath[0]" class="card-img-top" alt="...">
-    <a><img src="../../../assets/images/home/TVs3.png" class="card-img-top" alt="..."></a>
-    <div class="card-body">
-      <h5 class="card-title">{{product?.name}}</h5>
-      <div>
-        <h6 class="card-subtitle mb-2 text-muted">Price: {{product?.price | currency:'EGP'}}</h6>
-      </div>
-    </div>
-  </div> -->
+
   <div class="container cardDiv d-flex">
     <div class="card mb-3" style="max-width: 800px;">
         <div class="row g-0">
             <div class="col-md-4 imgDiv">
                 <img src="{{endpoint+'/'+product.imagePath[0]}}" class="card-img-top" alt="...">
-                <!-- <img src="../../../assets/images/home/TVs3.png" class="img-fluid rounded-start" alt="..."> -->
                 <hr>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
+                    <a class="favIcon" (click)="addToWishLIst(product._id)"><i class="fa-sharp fa-regular fa-heart"></i></a>
                     <h5 class="card-title">{{product?.name}}</h5>
                     <p class="card-text"><small class="text-muted">Ratings : {{product?.ratings}}</small></p>
                     <hr>
