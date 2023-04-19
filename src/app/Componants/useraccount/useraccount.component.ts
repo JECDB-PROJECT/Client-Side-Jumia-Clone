@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserAuthService } from 'src/app/Services/user/user-auth.service';
 
 @Component({
   selector: 'app-useraccount',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./useraccount.component.scss']
 })
 export class UseraccountComponent {
+
+  constructor(private userAuth:UserAuthService){
+
+  }
+
+  logOut(){
+
+    this.userAuth.Logout()
+  }
 
 }
