@@ -13,12 +13,14 @@ import { AboutusComponent } from './Componants/aboutus/aboutus.component';
 import { EditaccountComponent } from './Componants/editaccount/editaccount.component';
 import { ProductDetailsComponent } from './Componants/product-details/product-details.component';
 import { ProductsOfSearchComponent } from './Componants/products-of-search/products-of-search.component';
+import { UserAuthGuard } from './Componants/user/user-auth.guard';
+import { WishListComponent } from './Componants/wish-list/wish-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
   { path: 'Home', component: HomeComponent },
   { path: 'products/:prodId', component: ProductDetailsComponent },
-  { path: 'cart', component: UserCartComponent },
+  { path: 'cart', component: UserCartComponent , canActivate:[UserAuthGuard] },
   { path: 'help', component: HelpCenterComponent , title:'HelpCenter' },
   {path:'about',component:AboutusComponent,title:'ABOUTUS'},
   {path:"search/:srch",component:ProductsOfSearchComponent},
@@ -32,8 +34,10 @@ const routes: Routes = [
     path: 'User',
     loadChildren: () => import('./Componants/user/user.module').then(m => m.UserModule)
   },
-  { path: 'category/:id', component: CategProductsComponent },
-  { path: 'subcategory/:id', component: SubCategProductsComponent }
+  { path: 'category/:id', component: CategProductsComponent , canActivate:[UserAuthGuard] },
+  { path: 'subcategory/:id', component: SubCategProductsComponent , canActivate:[UserAuthGuard] },
+  { path: 'wichList', component: WishListComponent , canActivate:[UserAuthGuard] }
+
 ];
 
 @NgModule({
