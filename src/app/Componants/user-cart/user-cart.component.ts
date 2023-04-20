@@ -86,11 +86,7 @@ export class UserCartComponent implements OnInit, OnChanges {
 
 
   onCheckout(): void {
-    // this.httpClient.post('http://localhost:4200/checkout',{items:this.cartProducts.items})
-    // .subscribe(async (res:any) => {
-    //   let stripe=await loadStripe('pk_test_51MwpKwL91jneEfqmxDgzybtIj4as6QPKXd2R0kRxIGQovhXSzSChRdXJE5nsr21tQgQFGYjFXb227UvWuIhoI0LA00sWiPoUXi');
-    //   stripe?.redirectToCheckout({sessionId:res.id})
-    // })
+    this.router.navigate(["User/addAddress"])
   }
 
 

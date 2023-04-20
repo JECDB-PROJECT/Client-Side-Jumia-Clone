@@ -7,17 +7,19 @@ import { SignupComponent } from './signup/signup.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { AddAddressComponent } from './add-address/add-address.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  // {path:'profile', component: ProfileComponent,canActivate:[UserAuthGuard]}
+  { path: 'addAddress', component: AddAddressComponent },
 ]
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AddAddressComponent
   ],
   imports: [
     CommonModule,

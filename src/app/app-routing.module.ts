@@ -15,6 +15,7 @@ import { ProductDetailsComponent } from './Componants/product-details/product-de
 import { ProductsOfSearchComponent } from './Componants/products-of-search/products-of-search.component';
 import { UserAuthGuard } from './Componants/user/user-auth.guard';
 import { WishListComponent } from './Componants/wish-list/wish-list.component';
+import { PaymentMethodComponent } from './Componants/payment-method/payment-method.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
@@ -36,7 +37,8 @@ const routes: Routes = [
   },
   { path: 'category/:id', component: CategProductsComponent , canActivate:[UserAuthGuard] },
   { path: 'subcategory/:id', component: SubCategProductsComponent , canActivate:[UserAuthGuard] },
-  { path: 'wichList', component: WishListComponent , canActivate:[UserAuthGuard] }
+  { path: 'wichList', component: WishListComponent , canActivate:[UserAuthGuard] },
+  { path: 'payment', component: PaymentMethodComponent , canActivate:[UserAuthGuard] }
 
 ];
 
