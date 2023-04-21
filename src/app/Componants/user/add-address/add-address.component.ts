@@ -29,6 +29,7 @@ export class AddAddressComponent implements OnInit {
         fullName:['',[Validators.required]],
         phone:['',[Validators.required]],
         governate:['',[Validators.required]],
+        details:['',[Validators.required]],
         city:['',[Validators.required]]
       })
     }
@@ -69,9 +70,7 @@ export class AddAddressComponent implements OnInit {
     }
   }
   addAddress(){
-    console.log("from add address c: ",this.addressForm.value)
     this.addserve.addAddresses(this.addressForm.value).subscribe(data=>{
-      console.log("Add..",data)
       this.toastr.success('Address was added successfully..');
       this.router.navigate(['/payment'])
     })
