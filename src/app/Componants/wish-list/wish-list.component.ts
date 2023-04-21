@@ -1,22 +1,32 @@
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
 import { WishListService } from './../../Services/wichList/wish-list.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
   styleUrls: ['./wish-list.component.scss']
 })
-export class WishListComponent {
+export class WishListComponent implements OnInit {
 
-  prodList=[]
+  prodList = []
 
   data = null
 
 
-  constructor(private WishList:WishListService , private prdServe: ProductServicesService){
-    this.WishList.getUserWichLists().subscribe(data=>{
-      this.prodList=data[0].items
+  constructor(private toastr: ToastrService,private WishList: WishListService, private prdServe: ProductServicesService) {
+
+  }
+
+
+  ngOnInit(): void {
+    this.getUserWichLIst()
+  }
+
+  getUserWichLIst() {
+    this.WishList.getUserWichLists().subscribe(data => {
+      this.prodList = data[0].items
     })
 
   }
@@ -34,8 +44,12 @@ export class WishListComponent {
   }
 
 
-  removFromWishLIst(prdId:string){
-    this.WishList.deleteProductFromWishList(prdId).subscribe()
+  removFromWishLIst(prdId: string) {
+    this.WishList.deleteProductFromWishList(prdId).subscribe(data=>{
+      this.getUserWichLIst()
+      this.toastr.success('item removed successfully..');
+
+    })
   }
 
 }
