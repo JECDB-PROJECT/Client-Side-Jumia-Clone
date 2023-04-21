@@ -22,7 +22,7 @@ export class ProductDetailsComponent implements OnInit {
   data = null
   data2 = null
 
-  constructor(private activatedRoute: ActivatedRoute , private toastr: ToastrService, private prodService: ProductService, private prdservice: ProductServicesService , private wishList : WishListService) {
+  constructor(private activatedRoute: ActivatedRoute, private toastr: ToastrService, private prodService: ProductService, private prdservice: ProductServicesService, private wishList: WishListService) {
     this.endpoint = environment.jDBUrl
   }
   ngOnInit(): void {
@@ -53,12 +53,16 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  addToWishLIst(prdId:any){
+  addToWishLIst(prdId: any) {
     this.data2 = { items: { productId: prdId } }
-    this.wishList.addUserToWichList(this.data2).subscribe(data=>{
-      // this.toastr.show(data)
-      console.log(data);
+    this.wishList.addUserToWichList(this.data2).subscribe(data => {
+      if (data) {
+        this.toastr.success("item add successfuly..")
+        
+      }
       
     })
+    this.toastr.error("item is alredy add ...!")
+
   }
 }
