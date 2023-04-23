@@ -10,6 +10,9 @@ import { ProductServicesService } from 'src/app/Services/productservices/product
 })
 export class SubCategProductsComponent implements OnInit {
 
+  currentLang: string =localStorage.getItem('current_lang') || 'en'; 
+
+
   subCateg: string = ""
   Products: Iproduct[] = [];
   data = null

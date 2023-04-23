@@ -1,8 +1,10 @@
 import { Data } from "@angular/router";
 
 export interface Iproduct {
+  
   _id?: string,
   name?: string,
+  arname: any;
   imagePath?: Array<string>,
   totalPrice: number,
   category: string,
