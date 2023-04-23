@@ -68,8 +68,8 @@ export class ProductServicesService {
 
   }
 
-  removeSpecificCart(userID: any, productId: any): Observable<Icart> {
-    return this.http.post<Icart>(`${environment.jDBUrl}/api/cart/${productId}`, userID, this.httpOptions).pipe(
+  removeCart(cartId: any): Observable<Icart> {
+    return this.http.delete<Icart>(`${environment.jDBUrl}/api/cart/deleteCart/${cartId}`, this.httpOptions).pipe(
       catchError(this.handleError)
     )
 
@@ -104,6 +104,17 @@ export class ProductServicesService {
       )
 
   }
+
+
+  
+  // payment service
+  addPayment(stripeToken: any,amount:number): Observable<any> {
+    return this.http.post<Icart>(`${environment.jDBUrl}/api/checkout`, {token:stripeToken,amount:amount}, this.httpOptions).pipe(
+      catchError(this.handleError)
+    )
+    
+  }
+
 
 
   increaseQuantity(cartId: string, productId: string): Observable<Icart> {

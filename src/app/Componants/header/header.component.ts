@@ -11,7 +11,6 @@ import { ProductServicesService } from 'src/app/Services/productservices/product
 })
 export class HeaderComponent implements OnInit {
   cartProducts: any;
-  userId: string = "6425633cf68f40eb571fff5f";
   subscription!: Subscription;
   len: number = 0
   currentLang: string =localStorage.getItem('current_lang') || 'en'; 
@@ -22,7 +21,6 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {
     this.subscription = this.prdservice.getUserCart().subscribe(data => {
-      console.log('user data is *********> ', data);
       this.cartProducts = data[0];
     })
 
