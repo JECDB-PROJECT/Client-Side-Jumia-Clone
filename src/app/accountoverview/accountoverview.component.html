@@ -11,8 +11,7 @@
     <hr />
     <div class="col" class="details-body">
       <p>{{ User.name }}</p>
-      <span>{{ User.email }}</span
-      ><br /><br /><br />
+      <span>{{ User.email }}</span><br /><br /><br />
       <p>{{ User.phone }}</p>
       <a routerLink="../change_password"></a>
     </div>
@@ -29,8 +28,11 @@
     <div class="details-body">
       <p>{{"Your default shipping address:"|translate}}</p>
       <span>
-        kareman Ahmed سوهاج - اخميم -السلامونى Sohag, Sohag +20 1121790720</span
-      ><br /><br /><br />
+        <p>Country : {{userAddress?.country}}</p>
+        <p>Governate : {{userAddress?.governate}}</p>
+        <p>City : {{userAddress?.city}}</p>
+        <p>Details : {{userAddress?.details}}</p>
+      </span>
     </div>
   </div>
 </div>

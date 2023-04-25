@@ -15,6 +15,7 @@ export class AccountoverviewComponent  implements OnInit{
 
   User: Iuser = {};
   UserID: any;
+  userAddress:any
   data: any;
   userName = ''
   checkPassword: boolean = false;
@@ -44,6 +45,13 @@ export class AccountoverviewComponent  implements OnInit{
     });
 
     this.subscriptions.push(sub2);
+
+
+    this.accountservices.getUserAddByID().subscribe(data=>{
+      this.userAddress=data[0]
+      console.log(this.userAddress);
+      
+    })
   }
 
 

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Icart } from 'src/app/Models/icart';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
+import { AcountuserService } from 'src/app/Services/user/acountuser.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -41,8 +43,12 @@ export class PaymentMethodComponent implements OnInit {
   subscription!: Subscription;
   endpoint: any;
   totalPriceCart: number = 0;
+  priceWithShipping: number = 50;
 
-  constructor(private prdservice: ProductServicesService, private fs: FormBuilder, private router: Router) {
+  userAddress: any
+
+
+  constructor(private accountservices: AcountuserService, private prdservice: ProductServicesService, private fs: FormBuilder, private router: Router) {
 
     this.currentLang = localStorage.getItem('current_lang') || 'en';
 
@@ -51,24 +57,36 @@ export class PaymentMethodComponent implements OnInit {
     })
 
 
+    this.endpoint = environment.jDBUrl
 
   }
   ngOnInit(): void {
     this.getCard()
     this.invokeStripe()
+
+    this.accountservices.getUserAddByID().subscribe(data => {
+      this.userAddress = data[0]
+      console.log(this.userAddress);
+
+    })
+
   }
 
 
   getCard(): void {
     this.totalPriceCart = 0
     this.subscription = this.prdservice.getUserCart().subscribe(data => {
-      console.log('user data is *********> ', data);
       this.cartProducts = data[0];
       this.cartProducts?.items?.map((item) => {
         this.totalPriceCart = this.totalPriceCart + (item.productId.price * item.quantity)
+        this.priceWithShipping = this.totalPriceCart + 50
       })
-      console.log('user data is --------> ', this.cartProducts);
     })
+  }
+
+
+  backToCart() {
+    this.router.navigate(["/cart"])
   }
 
 
@@ -107,7 +125,7 @@ export class PaymentMethodComponent implements OnInit {
 
         name: 'UserCart',
         description: 'somePrd',
-        amount: this.totalPriceCart * 100,
+        amount: 5000 + this.totalPriceCart * 100,
         price: this.totalPriceCart
 
       })
