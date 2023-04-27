@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IProduct } from 'src/app/Models/iproduct';
 import { Iproduct } from 'src/app/Models/iproductCart';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
 
@@ -14,7 +15,7 @@ export class CategProductsComponent implements OnInit {
 
 
   cate: string = "";
-  Products: Iproduct[] = [];
+  Products: IProduct[] = [];
 
   data = null
 
@@ -31,7 +32,6 @@ export class CategProductsComponent implements OnInit {
 
         this.prdServe.getProductsByCategory(this.cate).subscribe(products => {
           this.Products = products;
-          console.log(this.Products)
         })
 
       })
