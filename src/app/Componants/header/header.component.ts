@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit {
     })
 
     this.subscription = this.prdservice.getUserCart().subscribe(data => {
-      data[0].items.length
-      this.prdservice.emit<number>(data[0].items.length);
+      data[0].items?.length
+      this.prdservice.emit<number>(data[0].items?.length);
     })
     this.prdservice.on<number>().subscribe(data => {
       this.len = data

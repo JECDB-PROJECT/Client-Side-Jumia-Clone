@@ -26,15 +26,7 @@ export class UserCartComponent implements OnInit, OnChanges {
     //var countInstock=cartProducts..productId.countInStock
   }
   ngOnInit(): void {
-    //this.cartProducts=this.prdservice.getUserCart(this.userId);
-    // this.subscription = this.prdservice.getUserCart().subscribe(data => {
-    //   console.log('user data is *********> ', data);
-    //   this.cartProducts = data[0];
-    //   this.cartProducts?.items?.map((item) => {
-    //     this.totalPriceCart = this.totalPriceCart + (item.productId.price * item.quantity)
-    //   })
-    //   console.log('user data is --------> ', this.cartProducts);
-    // })
+   
     this.getCard()
 
 
@@ -74,7 +66,7 @@ export class UserCartComponent implements OnInit, OnChanges {
     this.totalPriceCart = 0
     this.subscription = this.prdservice.getUserCart().subscribe(data => {
       console.log('user data is *********> ', data);
-      this.len = data[0].items.length
+      this.len = data[0]?.items?.length
       this.prdservice.emit<number>(this.len);
       this.cartProducts = data[0];
       this.cartProducts?.items?.map((item) => {

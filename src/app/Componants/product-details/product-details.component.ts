@@ -14,6 +14,9 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductDetailsComponent implements OnInit {
 
+  currentLang: string =localStorage.getItem('current_lang') || 'en'; 
+
+
   product: IProduct | undefined = undefined;
   prodId: string;
   stok: number = 9;

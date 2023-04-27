@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IProduct } from 'src/app/Models/iproduct';
 import { Iproduct } from 'src/app/Models/iproductCart';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
 
@@ -12,7 +13,7 @@ export class ProductsOfSearchComponent {
 
   inputSearch: string
 
-  products: Iproduct[]
+  products: IProduct[]
 
   data = null
 

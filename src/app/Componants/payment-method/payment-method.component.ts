@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, FormsModule, NgForm, Validators } 
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Icart } from 'src/app/Models/icart';
+import { OrderService } from 'src/app/Services/order/order.service';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
 import { AcountuserService } from 'src/app/Services/user/acountuser.service';
 import { environment } from 'src/environments/environment';
@@ -45,10 +46,16 @@ export class PaymentMethodComponent implements OnInit {
   totalPriceCart: number = 0;
   priceWithShipping: number = 50;
 
+  paymentMethod: string = "stripe"
+
   userAddress: any
 
 
-  constructor(private accountservices: AcountuserService, private prdservice: ProductServicesService, private fs: FormBuilder, private router: Router) {
+  data: any
+
+
+
+  constructor(private orderService:OrderService , private accountservices: AcountuserService, private prdservice: ProductServicesService, private fs: FormBuilder, private router: Router) {
 
     this.currentLang = localStorage.getItem('current_lang') || 'en';
 
@@ -58,6 +65,22 @@ export class PaymentMethodComponent implements OnInit {
 
 
     this.endpoint = environment.jDBUrl
+
+
+    this.data = {
+      shippingAddress: {
+        country: "",
+        fullName: "",
+        city: "",
+        phone: "",
+        governate: ""
+      },
+      paymentmethod: this.paymentMethod,
+      shippingPrice: 50,
+      taxPrice: null,
+      totalPrice: null,
+      isPaid:true,
+    }
 
   }
   ngOnInit(): void {
@@ -104,16 +127,41 @@ export class PaymentMethodComponent implements OnInit {
     });
     const paynemtStripe = (stripeToken: any) => {
       // this.checkout.makePayment(stripeToken).subscribe((data:any)=>{
-      this.prdservice.addPayment(stripeToken, amount).subscribe((data: any) => {
+
+      this.data={
+        shippingAddress: {
+          country: this.userAddress.country,
+          fullName: this.userAddress.fullName,
+          city: this.userAddress.city,
+          phone: this.userAddress.phone,
+          governate: this.userAddress.governate
+        },
+        paymentmethod: this.paymentMethod,
+        shippingPrice: 50,
+        taxPrice: amount,
+        totalPrice: amount+50,
+        isPaid:true,
+      }
+
+
+
+
+      let shipPrice = 50
+      this.prdservice.addPayment(stripeToken, amount + 50, this.userAddress, shipPrice, this.paymentMethod, amount).subscribe((data: any) => {
         console.log(amount);
 
-        console.log(data);
+        console.log(this.data);
         if (data.data === 'success') {
           this.success = true
           console.log(this.success);
-          // this.prdservice.removeCart(this.cartProducts._id).subscribe(data=>{
-          //   this.router.navigate(["/cart"])
-          // })
+
+          this.prdservice.removeCart(this.cartProducts._id).subscribe(data => {
+            this.router.navigate(["/cart"])
+          })
+
+
+          this.orderService.addUserOrder(this.data).subscribe()
+
         } else {
           this.failure = true
           console.log('payfail');

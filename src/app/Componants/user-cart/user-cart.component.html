@@ -1,12 +1,12 @@
 <!-- <section *ngIf="cartProducts.items.length"> -->
-  <section *ngIf="cartProducts&&cartProducts?.items.length">
+  <section *ngIf="cartProducts&&cartProducts?.items?.length">
     <div class="container text-center col-xl-* d-flex ">
       <div>
         <table class="table mt-3 " style="width: 55rem;background-color: white;border-radius:.5em;">
           <thead>
             <tr class="text-dark ">
               <th scope="col" style="padding: 0.5rem; padding:  0.5em 1em; font-size: 1.2em; ">{{"Cart"|translate}}(
-                {{cartProducts?.items.length}} )</th>
+                {{cartProducts?.items?.length}} )</th>
             </tr>
           </thead>
   
