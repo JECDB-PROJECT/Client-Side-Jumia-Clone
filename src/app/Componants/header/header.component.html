@@ -2,8 +2,10 @@
   <div class="row" style="height: 56px">
     <div class="col-xl-2"></div>
     <div class="col-xl-8" style="padding: 0%;margin: 0%;">
-      <img class="col-xl-12" src="../../../assets/images/header2.jpg" alt="" style="box-sizing: border-box;"  *ngIf="currentLang=='ar'">
-      <img class="col-xl-12" src="../../../assets/images/header1-2.jpg" alt="" style="box-sizing: border-box; "  *ngIf="currentLang=='en'">
+      <img class="col-xl-12" src="../../../assets/images/header2.jpg" alt="" style="box-sizing: border-box;"
+        *ngIf="currentLang=='ar'">
+      <img class="col-xl-12" src="../../../assets/images/header1-2.jpg" alt="" style="box-sizing: border-box; "
+        *ngIf="currentLang=='en'">
 
     </div>
     <div class="col-xl-2"></div>
@@ -61,14 +63,19 @@
             type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <button id="navs" class="bg-white" style="border: 0 white;font-weight: 500">
               <i id="navs" class="bi bi-person" style="font-weight: bold;font-size: 18px;"></i>
-             {{" Account"|translate}}</button>
+              {{" Account"|translate}}</button>
           </span>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="User/login">{{"SignIn"|translate}}</a></li>
-            <li><a class="dropdown-item" href="User/signup">{{"Sign up"|translate}}</a></li>
+          <ul class="dropdown-menu" style="width: 250px; text-align: center;">
+            <li><a class="dropdown-item" href="User/login" [hidden]="loged">{{"Sign In"|translate}}</a></li>
+            <li><a class="dropdown-item" href="User/signup" [hidden]="loged">{{"Sign up"|translate}}</a></li>
             <li><a class="dropdown-item" href="/useraccount/accountoverview">{{"My Account"|translate}}</a></li>
             <li><a class="dropdown-item" href="/wichList">{{"Saved items"|translate}}</a></li>
             <li><a class="dropdown-item" href="/about">{{"About Us"|translate}}</a></li>
+
+            <hr />
+            <a routerLink="/" (click)="logOut()">
+              <span style="margin: 30%;color: #f68b1e;font-weight: 400;">{{"LOGOUT"|translate}}</span>
+            </a>
           </ul>
         </span>
         <span class="dropdown px-2 bg-white border border-white">
@@ -78,7 +85,7 @@
               <i id="navs" style="font-weight: bold;font-size: 15px" class="bi bi-question-circle"></i>
               {{"Help"|translate}}</button>
           </span>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" style="width: 250px; text-align: center;">
             <li><a class="dropdown-item" href="/help">{{"Help Center"|translate}}</a></li>
             <li><a class="dropdown-item" href="#">{{"Order Cancellation"|translate}}</a></li>
             <li><a class="dropdown-item" href="#">{{"Returns and Refund"|translate}}</a></li>
@@ -105,5 +112,3 @@
   </div>
 
 </div>
-
-
