@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
+import { UserAuthService } from 'src/app/Services/user/user-auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,12 @@ export class HeaderComponent implements OnInit {
   subscription!: Subscription;
   len: number = 0
   currentLang: string =localStorage.getItem('current_lang') || 'en'; 
+  
+  loging: string =localStorage.getItem('access_token'); 
+
+  loged:boolean=false
   // translate: TranslateService;
-  constructor(private prdservice: ProductServicesService, public translate:TranslateService , private router:Router) {
+  constructor(private userAuth:UserAuthService , private prdservice: ProductServicesService, public translate:TranslateService , private router:Router) {
     this.currentLang = localStorage.getItem('current_lang') || 'en';
     this.translate.use(this.currentLang)
   }
@@ -28,9 +33,14 @@ export class HeaderComponent implements OnInit {
       data[0].items?.length
       this.prdservice.emit<number>(data[0].items?.length);
     })
+
     this.prdservice.on<number>().subscribe(data => {
       this.len = data
     })
+
+    if(this.loging){
+      this.loged=true
+    }
 
   }
 
@@ -43,10 +53,13 @@ export class HeaderComponent implements OnInit {
   }
 
   searchInput(input:string){
-
     this.router.navigate(["search/"+input])
-    
-  
+  }
+
+  logOut(){
+    this.userAuth.Logout()
+    window.location.reload()
+
   }
 
 }

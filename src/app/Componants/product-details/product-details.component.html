@@ -9,7 +9,8 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <a class="favIcon" (click)="addToWishLIst(product._id)"><i class="fa-sharp fa-regular fa-heart"></i></a>
-                    <h5 class="card-title">{{product.name?product.name.slice(0, 25):product.arname.slice(0, 25)}}</h5>
+                    <h5 class="card-title">{{product.name?product.name.slice(0, 55):product.arname.slice(0, 55)}}</h5>
+                    <h6 class="card-text" style="color: gray;">{{product.description?product.description.slice(0, 55):product.ardescription.slice(0, 55)}}</h6>
                     <p class="card-text"><small class="text-muted">{{"Ratings : "|translate}} {{product?.ratings}}</small></p>
                     <hr>
                     <p class="card-text">{{product?.price | currency:'EGP'}}</p>
