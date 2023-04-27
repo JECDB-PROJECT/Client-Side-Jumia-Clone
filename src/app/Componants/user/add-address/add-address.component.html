@@ -29,7 +29,7 @@
 
                     <div *ngIf="addressForm.controls['fullName'].errors" class=" text-warning">
 
-                        Please must be select your full name
+                    {{"Please must be select your full name"|translate}}
 
                     </div>
 
@@ -59,7 +59,7 @@
 
                     <div *ngIf="addressForm.controls['phone'].errors" class=" text-warning">
 
-                        Please must be select your phone
+                  {{"Please must be select your phone"|translate}}
 
                     </div>
 
@@ -85,7 +85,7 @@
 
                 <div *ngIf="addressForm.controls['country'].errors" class=" text-warning">
 
-                    Please must be select your country
+                    {{"Please must be select your country"|translate}}
 
                 </div>
 
@@ -120,7 +120,7 @@
 
                         <div *ngIf="addressForm.controls['governate'].errors" class=" text-warning">
 
-                            Please must be select your governate
+                            {{"Please must be select your governate"|translate}}
 
                         </div>
 
@@ -151,7 +151,7 @@
 
                         <div *ngIf="addressForm.controls['city'].errors" class=" text-warning">
 
-                            Please must be select your city
+                            {{"Please must be select your city"|translate}}
 
                         </div>
 
@@ -163,7 +163,7 @@
                     <div class="">
                         <div>
                             <label for="address" class="form-label fs-5 m-1">
-                                <span class="a-size-base "><strong>{{"Ditails"|translate}}</strong> </span>
+                                <span class="a-size-base "><strong>{{"Details"|translate}}</strong> </span>
                             </label>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
 
                         <div *ngIf="addressForm.controls['details'].errors" class=" text-warning">
 
-                            Please must be select your address detals
+                            {{"Please must be select your address details"|translate}}
 
                         </div>
 
@@ -189,8 +189,7 @@
 
             </div>
             <div class="col-12 my-5">
-                <button type="submit" class="btn btn-warning w-100">Use this
-                    address</button>
+                <button type="submit" class="btn btn-warning w-100">{{"Next"|translate}}</button>
             </div>
             <br /><br /><br /><br /><br />
 
