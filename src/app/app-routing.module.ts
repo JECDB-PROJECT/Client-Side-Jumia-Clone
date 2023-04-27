@@ -28,7 +28,8 @@ const routes: Routes = [
   {
     path: 'useraccount', component: UseraccountComponent , children: [
       { path: 'accountoverview', component: AccountoverviewComponent, title:"My account" },
-      {path:'edituser',component:EditaccountComponent,title:"EditProfile"}
+      {path:'edituser',component:EditaccountComponent,title:"EditProfile"},
+       { path: 'wichList', component: WishListComponent , canActivate:[UserAuthGuard] },
     ]
   },
   {

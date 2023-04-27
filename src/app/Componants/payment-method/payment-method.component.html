@@ -1,7 +1,7 @@
 <div class="container">
     <img src="../../../assets/amazonlogo.gif" class="img-fluid mt-4" alt="" />
     <h3 class="fw-normal fs-2 mt-5" style="font-family: Arial, Helvetica, sans-serif">
-        {{'Select a payment method'|translate}}
+        {{"Select a payment method"|translate}}
     </h3>
     <form [formGroup]="paymentForm">
         <div class="row">
@@ -32,12 +32,12 @@
                 <div class="card">
                     <h5 class="card-header">{{"Shipping Information"|translate}}</h5>
                     <div class="card-body">
-                        <h5 style="display: inline;">Full Name</h5> <span>:  {{userAddress?.fullName}}</span><br>
-                        <h5 style="display: inline;">Phone</h5> <span>:  {{userAddress?.phone}}</span><br>
-                        <h5 style="display: inline;">Country</h5> <span>:  {{userAddress?.country}}</span><br>
-                        <h5 style="display: inline;">City</h5> <span>:  {{userAddress?.city}}</span><br>
-                        <h5 style="display: inline;">Governate</h5> <span>:  {{userAddress?.governate}}</span><br>
-                        <h5 style="display: inline;">Details</h5> <span>:  {{userAddress?.details}}</span><br>
+                        <h5 style="display: inline;">{{"Full Name"|translate}}</h5> <span>:  {{userAddress?.fullName}}</span><br>
+                        <h5 style="display: inline;">{{"Phone"|translate}}</h5> <span>:  {{userAddress?.phone}}</span><br>
+                        <h5 style="display: inline;">{{"Country"|translate}}</h5> <span>:  {{userAddress?.country}}</span><br>
+                        <h5 style="display: inline;">{{"City"|translate}}</h5> <span>:  {{userAddress?.city}}</span><br>
+                        <h5 style="display: inline;">{{"Governate"|translate}}</h5> <span>:  {{userAddress?.governate}}</span><br>
+                        <h5 style="display: inline;">{{"Details"|translate}}</h5> <span>:  {{userAddress?.details}}</span><br>
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                                 <table class="table mt-3 " style="width: 15rem;background-color: white;border-radius:.5em;">
                                     <thead>
                                       <tr class="text-dark ">
-                                        <th scope="col" style="padding: 0.5rem; padding:  0.5em 1em; font-size: 1.2em; ">Cart ({{cartProducts?.items.length}})</th>
+                                        <th scope="col" style="padding: 0.5rem; padding:  0.5em 1em; font-size: 1.2em; ">{{"Cart"|translate}} ({{cartProducts?.items.length}})</th>
                                       </tr>
                                     </thead>
                             
@@ -64,8 +64,8 @@
                                           <td><img StyleBox [src]="endpoint+'/'+prd.productId.imagePath[0]" width="60" height="60"></td>
                                           <td style="text-align:left">
                                             <p style="font: 1em Verdana;">{{prd.productId.name}}</p>
-                                            <p style="font: 1em Arial;">EGP {{prd.productId.price}}</p>
-                                            <p style="font: 1em Arial;">Quantity : {{prd.quantity}} </p>
+                                            <p style="font: 1em Arial;">{{"EGP"|translate}} {{prd.productId.price}}</p>
+                                            <p style="font: 1em Arial;">{{"Quantity"|translate}} : {{prd.quantity}} </p>
 
                                           </td>
                                           
@@ -79,7 +79,7 @@
                                 <button id="sendbtn" 
                                     class="btn w-100 fw-bold btn-lg"
                                     style="background-color: #f1c965; font-size: 12px" (click)="backToCart()">
-                                    {{'Back To Cart'|translate}}
+                                    {{"Back To Cart"|translate}}
                                 </button>
                             </div>
                         </div>
@@ -93,16 +93,16 @@
                                 <button id="sendbtn" [disabled]="!paymentForm.valid" href="#" type="submit"
                                     class="btn w-100 fw-bold btn-lg"
                                     style="background-color: #f1c965; font-size: 12px" (click)="makePayment(totalPriceCart)">
-                                    {{'Continue'|translate}}
+                                    {{"Continue"|translate}}
                                 </button>
                                 <p class="card-text">
-                                    Befor Shippin Price :{{totalPriceCart }}
+                                    {{"Befor Shippin Price"|translate}} :{{totalPriceCart }}
                                 </p>
                                 <p class="card-text">
-                                    Shipping Price :{{50}}
+                                   {{"Shipping Price"|translate}} :{{50}}
                                 </p>
                                 <p class="card-text">
-                                    Total Order Price :{{totalPriceCart + 50}}
+                                    {{"Total Order Price"|translate}} :{{totalPriceCart + 50}}
                                 </p>
                             </div>
                         </div>
@@ -119,11 +119,11 @@
 <section *ngIf="success" style="display: flex; justify-content: center;">
     <div class="card" style="width: 18rem; margin: 5em; text-align: center;">
       <div class="card-body">
-        <h5 class="card-title">succees payment</h5>
+        <h5 class="card-title">{{"succees payment"|translate}}</h5>
         <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-        <p class="card-text"> now you can rest drink coffee until order reach you  </p>
+        <p class="card-text"> {{"now you can rest drink coffee until order reach you"|translate}}  </p>
   
-        <button class="btn btn-warning  w-100 " [routerLink]="['/']">Start Shopping again </button>
+        <button class="btn btn-warning  w-100 " [routerLink]="['/']">{{"Start Shopping again"|translate}} </button>
       </div>
     </div>
     <P>

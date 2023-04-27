@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AddressService } from 'src/app/Services/address/address.service';
 
@@ -18,11 +19,13 @@ export class AddAddressComponent implements OnInit {
   isdefault = false
   addressForm:FormGroup;
   countryname = "[A-Za-z]{1,20}";
+  currentLang:string;
   constructor(
     private addserve:AddressService,
     public fb: FormBuilder,
     private router:Router,
     private toastr: ToastrService,
+    public translate:TranslateService
     ) {
       this.addressForm= this.fb.group({
         country:['',[Validators.required]],
@@ -32,6 +35,8 @@ export class AddAddressComponent implements OnInit {
         details:['',[Validators.required]],
         city:['',[Validators.required]]
       })
+      this.currentLang=localStorage.getItem('current_lang')||'en';
+      this.translate.use(this.currentLang)
     }
 
   ngOnInit(): void {
