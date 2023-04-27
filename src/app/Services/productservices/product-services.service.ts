@@ -9,6 +9,7 @@ import { LocalStorgeService } from '../localStorge/local-storge.service';
 import { Router } from '@angular/router';
 import { Icart } from 'src/app/Models/icart';
 import { Iproduct } from 'src/app/Models/iproductCart';
+import { IProduct } from 'src/app/Models/iproduct';
 
 
 @Injectable({
@@ -79,8 +80,8 @@ export class ProductServicesService {
     return this.http.delete<Icart>(environment.jDBUrl + '/api/cart/' + cartId + '/' + productId)
   }
 
-  GetProductsBySubCate(subcate: string): Observable<Iproduct[]> {
-    return this.http.get<Iproduct[]>(
+  GetProductsBySubCate(subcate: string): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(
       environment.jDBUrl + '/api/products/subcat/' + subcate, this.httpOptions).pipe(
         catchError(this.handleError)
       )
@@ -88,7 +89,7 @@ export class ProductServicesService {
   }
 
   getProductsByCategory(cate: string) {
-    return this.http.get<Iproduct[]>(
+    return this.http.get<IProduct[]>(
       environment.jDBUrl + '/api/products/cat/' + cate, this.httpOptions).pipe(
         catchError(this.handleError)
       )
@@ -108,8 +109,8 @@ export class ProductServicesService {
 
   
   // payment service
-  addPayment(stripeToken: any,amount:number): Observable<any> {
-    return this.http.post<Icart>(`${environment.jDBUrl}/api/checkout`, {token:stripeToken,amount:amount}, this.httpOptions).pipe(
+  addPayment(stripeToken: any,amount:number , userAdd:any , shippPrice:any , paymentMeth:any , cartPrice:any): Observable<any> {
+    return this.http.post<Icart>(`${environment.jDBUrl}/api/checkout`, {token:stripeToken,amount:amount , address:userAdd , shippingPrice:shippPrice , paymentMethod:paymentMeth , cartPrice:cartPrice}, this.httpOptions).pipe(
       catchError(this.handleError)
     )
     
@@ -131,7 +132,7 @@ export class ProductServicesService {
 
     console.log(data);
 
-    return this.http.post<Iproduct[]>(
+    return this.http.post<IProduct[]>(
       environment.jDBUrl + `/api/products/search`, data ,this.httpOptions).pipe(
         catchError(this.handleError)
       )

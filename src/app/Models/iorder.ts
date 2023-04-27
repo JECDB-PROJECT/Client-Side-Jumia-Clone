@@ -12,6 +12,5 @@ export interface Iorder {
     isDelivered?: boolean,
     deliveredAt?:Date,
     isCancelled?: boolean,
-    orderItems:any,
     createdAt:Date
 }
