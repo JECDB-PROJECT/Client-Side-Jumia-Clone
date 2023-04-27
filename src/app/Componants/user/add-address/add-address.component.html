@@ -75,7 +75,7 @@
                     tabindex="-1" class=" w-100 rounded-3 form-select" formControlName="country"
                     (change)="onChangeCountry($event)">
                     <option class="a-size-base" value="">{{"Select Country"|translate}}</option>
-                    <option *ngFor="let ctry of Countries" value="{{ctry.name}}">
+                    <option *ngFor="let ctry of Countries" value="{{ctry.name}}{{ctry.arName}}">
                         {{ctry.name}}{{ctry.arName}}
                     </option>
                 </select>

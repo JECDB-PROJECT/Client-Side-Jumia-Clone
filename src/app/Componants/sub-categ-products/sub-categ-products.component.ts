@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IProduct } from 'src/app/Models/iproduct';
 import { Iproduct } from 'src/app/Models/iproductCart';
 import { ProductServicesService } from 'src/app/Services/productservices/product-services.service';
 
@@ -14,7 +15,7 @@ export class SubCategProductsComponent implements OnInit {
 
 
   subCateg: string = ""
-  Products: Iproduct[] = [];
+  Products: IProduct[] = [];
   data = null
 
   constructor(private activatedRoute: ActivatedRoute, private prdServe: ProductServicesService, private router: Router) {
