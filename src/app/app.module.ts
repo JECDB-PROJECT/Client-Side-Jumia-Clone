@@ -26,6 +26,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { WishListComponent } from './Componants/wish-list/wish-list.component';
 import { PaymentMethodComponent } from './Componants/payment-method/payment-method.component';
+import { SellerRegester1Component } from './Componants/seller/seller-regester1/seller-regester1.component';
+import { SellerRegester2Component } from './Componants/seller/seller-regester2/seller-regester2.component';
 
 export function createTranslateloader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/','.json');
@@ -49,7 +51,9 @@ export function createTranslateloader(http: HttpClient) {
     ProductDetailsComponent,
     ProductsOfSearchComponent,
     WishListComponent,
-    PaymentMethodComponent
+    PaymentMethodComponent,
+    SellerRegester1Component,
+    SellerRegester2Component
     
   ],
   imports: [
