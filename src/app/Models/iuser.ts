@@ -3,5 +3,10 @@ export interface Iuser {
     name?: string;
     email?: string;
     phone?: string;
-    password?: string
+    password?: string;
+    shop?:{
+        shopName: { type: String},
+        logo: { type: String,},
+        description: { type: String}
+    }
 }
