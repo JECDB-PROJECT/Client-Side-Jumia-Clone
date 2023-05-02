@@ -40,6 +40,13 @@ export class UserAuthService {
     )
   }
 
+  sellerSignup(user: any): Observable<Iuser> {
+    return this.http.post<Iuser>(`${environment.jDBUrl}/api/auth/seller/signup`, user, this.httpOptions).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+
   signIn(user: any): any {
     this.http.post<Iuser>(`${environment.jDBUrl}/api/auth/login`, user, this.httpOptions).subscribe((res: any) => {
         this.toastr.success(`Hello again, ${res.user.name}`);
