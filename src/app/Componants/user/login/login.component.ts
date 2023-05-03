@@ -12,8 +12,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LoginComponent {
 
+
   user1: Iuser
-  
   form: FormGroup;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   currentLang:string;
