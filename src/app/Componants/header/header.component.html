@@ -32,6 +32,7 @@
 
         </span>
     </div>
+
     <div class="col-xl-2"></div>
 
   </div>
@@ -68,9 +69,14 @@
           <span class=" dropdown-toggle bg-white p-1 paddingStyle"
             style="font-size: 17px;border: 0;background-color: #FFFFFF;" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <button id="navs" class="bg-white paddingStyle" style="border: 0 white;font-weight: 500">
+            <button id="navs" class="bg-white paddingStyle" style="border: 0 white;font-weight: 500" *ngIf="User.name||!User.name">{{User.name}}
               <i id="navs" class="bi bi-person" style="font-weight: bold;font-size: 18px;"></i>
-              {{" Account"|translate}}</button>
+              <!-- Hello:{{User.name}}  {{" Account"|translate}} -->
+              <span [hidden]="User.name">{{" Account"|translate}}</span>
+              <!-- <div *ngIf="!User.name">{{" Account"|translate}}</div> -->
+
+            </button>
+
           </span>
           <ul class="dropdown-menu" style="width: 250px; text-align: center;">
             <li><a class="dropdown-item" href="User/login" [hidden]="loged">{{"Sign In"|translate}}</a></li>
