@@ -5,7 +5,7 @@
             <div *ngFor="let prod of prodList" class="product col-md-2">
                 <div class="product2">
                     <a class="favIcon" (click)="removFromWishLIst(prod.productId._id)"><i class="fa-solid fa-trash-can"></i></a>
-                    <a  ><img [src]=" 'http://localhost:3030/' + prod.productId.imagePath[0]" alt="" class="myHomeImg"></a>
+                    <a  ><img [src]=" 'https://ecommerce-dashboard-website-api2.onrender.com/' + prod.productId.imagePath[0]" alt="" class="myHomeImg"></a>
                     <p><a >{{prod.productId.name.slice(0, 25)}}</a></p>
                 </div>
                 <div class="price" >

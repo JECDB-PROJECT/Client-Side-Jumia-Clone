@@ -14,7 +14,7 @@
         <section class="d-flex flex-wrap col-12 justify-content-between">
             <div *ngFor="let prod of products" class="product col-md-2">
                 <div class="product2" >
-                    <a  ><img [src]=" 'http://localhost:3030/' + prod.imagePath[0]" alt="" class="myHomeImg"></a>
+                    <a  ><img [src]=" 'https://ecommerce-dashboard-website-api2.onrender.com/' + prod.imagePath[0]" alt="" class="myHomeImg"></a>
                     <p><a >{{prod.name.slice(0, 25)}}</a></p><br>
                 </div>
                 <div class="price" >
