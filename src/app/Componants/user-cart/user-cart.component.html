@@ -1,4 +1,3 @@
-<!-- <section *ngIf="cartProducts.items.length"> -->
   <section *ngIf="cartProducts&&cartProducts?.items?.length">
     <div class="container text-center col-xl-* d-flex ">
       <div>
@@ -13,7 +12,6 @@
           <tbody>
             <ng-container *ngFor="let prd of cartProducts?.items ;let i=index">
               <tr>
-                <!-- <td>{{i+1}}</td> -->
                 <td><img StyleBox [src]="endpoint+'/'+prd.productId.imagePath[0]" width="100" height="100"></td>
                 <td style="text-align:left">
                   <p style="font: 1em Verdana;">{{prd.productId.name}}</p>
@@ -21,16 +19,7 @@
                 </td>
                 <td>
                   <p style="font: 1em Arial;">{{"EGP"|translate}}{{prd.productId.price}}</p>
-                  <ng-container [ngSwitch]="prd.quantity">
-                    <!-- <ng-container *ngSwitchCase="0">Out Of Stock</ng-container>
-              <ng-container *ngSwitchCase="1">Last one item</ng-container>
-              <ng-container *ngSwitchCase="2">Last 2 item</ng-container>
-              <ng-container *ngSwitchDefault>{{prd.quantity}}</ng-container> -->
-                  </ng-container>
-                  <!-- <tr><td> <button [disabled]="prod.productId.countInStock<=prod.quantity" type="button"
-            class="btn btn-warning mx-2 " (click)="increaseQuantity(i)">
-            <i class="fa-solid fa-plus"></i></button></td></tr> -->
-  
+                  <ng-container [ngSwitch]="prd.quantity"></ng-container>
                 </td>
               </tr>
   
@@ -71,10 +60,7 @@
           <tbody>
             <tr>
               <th scope="row">{{"Subtotal"|translate}}</th>
-              <!-- <td>{{cartProducts.items[1].productId.price}} EGP</td> -->
-              <td>{{totalPriceCart}} {{"EGP"|translate}}</td>
-              <!-- <td><h2 #itemsCount >{{ prd.productId.price*prd.quantity}}</h2></td> -->
-  
+              <td>{{totalPriceCart}} {{"EGP"|translate}}</td>  
             </tr>
             <tr>
               <td>{{"Jumia Express items are eligible for free delivery"|translate}} </td>
@@ -97,7 +83,6 @@
     <div class="card" style="width: 18rem; margin: 5em; text-align: center;">
       <div class="card-body">
         <h5 class="card-title">{{"Cart empty"|translate}}</h5>
-        <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
         <p class="card-text">{{" your cart is empty, it's time for Shopping"|translate}} </p>
   
         <button class="btn btn-warning  w-100 " [routerLink]="['/']">{{"Start Shopping"|translate}} </button>

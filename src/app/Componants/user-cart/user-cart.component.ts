@@ -54,7 +54,6 @@ export class UserCartComponent implements OnInit, OnChanges {
 
 
   onDeleteItem(cartId: any, prodId: any) {
-    console.log(prodId)
     this.prdservice.deleteItemFromCart(cartId, prodId).subscribe(data => {
       this.getCard()
     })
@@ -65,14 +64,12 @@ export class UserCartComponent implements OnInit, OnChanges {
   getCard(): void {
     this.totalPriceCart = 0
     this.subscription = this.prdservice.getUserCart().subscribe(data => {
-      console.log('user data is *********> ', data);
       this.len = data[0]?.items?.length
       this.prdservice.emit<number>(this.len);
       this.cartProducts = data[0];
       this.cartProducts?.items?.map((item) => {
         this.totalPriceCart = this.totalPriceCart + (item.productId.price * item.quantity)
       })
-      console.log('user data is --------> ', this.cartProducts);
     })
   }
 

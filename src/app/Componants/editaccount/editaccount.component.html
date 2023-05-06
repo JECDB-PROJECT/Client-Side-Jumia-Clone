@@ -1,87 +1,63 @@
-<div class="container-fluid " >
-  <div class="col-3 " >
+<div class="container-fluid ">
+  <div class="col-3 ">
     <div class="container-fluid ">
       <p class="">
-        <!-- {{userName}} -->
-        <a routerLink="/useraccount/accountoverview" class=" btn-link text-decoration-none  hover-text-danger"><h3  style="color: #FF9900 ;" >{{'Your Account'}}</h3> </a>
+        <a routerLink="/useraccount/accountoverview" class=" btn-link text-decoration-none  hover-text-danger">
+          <h3 style="color: #FF9900 ;">{{'Your Account'}}</h3>
+        </a>
 
         <a class=""></a>
       </p>
       <p class="fs-3"></p>
 
     </div>
-    <div class=""  >
-      <!-- <Name > -->
-
+    <div class="">
 
       <div class="col fw-bold">
         {{"Name:"|translate}}
       </div>
       <div class="col">
         {{User.name }}
-
-
       </div>
-
-
-
-
-
-    <input  data-bs-toggle="modal" data-bs-target="#Name" data-bs-whatever="@Name" style="border:1px solid  #FF9900 ;">
-
-  </div>
-  <p class="text-danger alert d-none alert-danger p-0 m-0 " #valid_name>{{"! must this name bigger than"}} </p>
-
-  <!-- <Mobile Phone Number: > -->
-
-<div class="col fw-bold">
-  {{"Mobile Phone"|translate}}
-</div>
-<div class="col">
-  {{User.phone }}
-
-</div>
-
-
-
-<input  data-bs-toggle="modal" data-bs-target="#Phone-pop" style="border:1px solid  #FF9900 ;">
-
-
-
-
-<p class="text-danger alert d-none alert-danger p-0 m-0 " #valid_phone>{{"! check your new phone is maybe wrong"}}
-</p>
-
-<!-- <Mobile password > -->
-
-<div class="col fw-bold">
-  {{"Password"|translate}}
-</div>
-<div class="col">
-  ******
-</div>
-
-
-
-<input  data-bs-toggle="modal" data-bs-target="#Password" style="border:1px solid  #FF9900 ;">
-
-
-
-
-<p class="text-danger alert d-none alert-danger p-0 m-0 " #valid_password>
-  {{"! check your new password is maybe wrong. To check a password between 7 to 16 characters which contain only characters, numeric digits, underscore and the first character must be a letter"}}
-</p>
-
-
-
-
-<div class="container-fluid  py-3  mb-4" >
-  <button class="btn  " (click)="changeAlldate()"  routerLink="/User/login" style="background-color:  #FF9900 ;">
-    {{"Done"|translate}}
-  </button>
-</div>
+      <input data-bs-toggle="modal" data-bs-target="#Name" data-bs-whatever="@Name" style="border:1px solid  #FF9900 ;">
 
     </div>
+    <p class="text-danger alert d-none alert-danger p-0 m-0 " #valid_name>{{"! must this name bigger than"}} </p>
+
+    <div class="col fw-bold">
+      {{"Mobile Phone"|translate}}
+    </div>
+    <div class="col">
+      {{User.phone }}
+
+    </div>
+
+    <input data-bs-toggle="modal" data-bs-target="#Phone-pop" style="border:1px solid  #FF9900 ;">
+
+    <p class="text-danger alert d-none alert-danger p-0 m-0 " #valid_phone>{{"! check your new phone is maybe wrong"}}
+    </p>
+
+    <div class="col fw-bold">
+      {{"Password"|translate}}
+    </div>
+    <div class="col">
+      ******
+    </div>
+
+    <input data-bs-toggle="modal" data-bs-target="#Password" style="border:1px solid  #FF9900 ;">
+
+    <p class="text-danger alert d-none alert-danger p-0 m-0 " #valid_password>
+      {{"! check your new password is maybe wrong. To check a password between 7 to 16 characters which contain only
+      characters, numeric digits, underscore and the first character must be a letter"}}
+    </p>
+
+    <div class="container-fluid  py-3  mb-4">
+      <button class="btn  " (click)="changeAlldate()" routerLink="/User/login" style="background-color:  #FF9900 ;">
+        {{"Done"|translate}}
+      </button>
+    </div>
+
+  </div>
 </div>
 
 
@@ -120,7 +96,8 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"Cancel"}}</button>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" #btn_name
-          (click)="changeName(new_name.value,valid_name ,btn_name)"  style="background-color:#FF9900">{{"Save"}} </button>
+          (click)="changeName(new_name.value,valid_name ,btn_name)" style="background-color:#FF9900">{{"Save"}}
+        </button>
       </div>
     </div>
   </div>

@@ -41,13 +41,11 @@ export class AddAddressComponent implements OnInit {
 
   ngOnInit(): void {
     this.addserve.getCountries().subscribe(countries=> {
-      console.log("countries", countries)
       this.Countries = countries.map(country=>country)
     })
   }
   onChangeCountry(event:any) {
     const countryName = event.target.value
-    console.log(countryName)
     if (countryName) {
       this.addserve.getGovs(countryName).subscribe(
         data => {
@@ -62,11 +60,9 @@ export class AddAddressComponent implements OnInit {
   }
   onChangeGov(event:any) {
     const govId = event.target.value
-    console.log(event.target.value)
     if (govId) {
       this.addserve.getCities(govId).subscribe(        
         data => {
-          console.log(govId)
           this.Cities = data;
         }
       );

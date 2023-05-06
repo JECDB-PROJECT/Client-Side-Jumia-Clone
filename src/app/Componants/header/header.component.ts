@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
   checkPassword: boolean = false;
   checkEmailData: boolean = false;
   public subscriptions: Subscription[] = [];
-  // translate: TranslateService;
   constructor(private userAuth:UserAuthService , private prdservice: ProductServicesService,    private storageService:LocalStorgeService,private accountservices:AcountuserService, public translate:TranslateService , private router:Router) {
     this.currentLang = localStorage.getItem('current_lang') || 'en';
     this.translate.use(this.currentLang)
@@ -57,7 +56,6 @@ export class HeaderComponent implements OnInit {
     let sub1 = this.userAuth.userName$.subscribe((userName) => {
       const user = JSON.parse(localStorage.getItem('user') as string);
       this.UserID = user._id;
-      console.log("UserID",this.UserID , user._id);
     });
 
     this.subscriptions.push(sub1);
@@ -65,7 +63,6 @@ export class HeaderComponent implements OnInit {
     let sub2 = this.accountservices.getUserByID(this.UserID).subscribe((user) => {
 
       this.User = user;
-      console.log('succeessfuly', user);
     });
 
     this.subscriptions.push(sub2);
@@ -73,7 +70,6 @@ export class HeaderComponent implements OnInit {
 
     this.accountservices.getUserAddByID().subscribe(data=>{
       this.userAddress=data[0]
-      console.log(this.userAddress);
 
     })
   }

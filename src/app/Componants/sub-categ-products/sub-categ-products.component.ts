@@ -30,7 +30,6 @@ export class SubCategProductsComponent implements OnInit {
 
         this.prdServe.GetProductsBySubCate(this.subCateg).subscribe(products => {
           this.Products = products;
-          console.log(this.Products)
         })
 
       })

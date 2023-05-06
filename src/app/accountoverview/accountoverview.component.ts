@@ -33,7 +33,6 @@ export class AccountoverviewComponent  implements OnInit{
     let sub1 = this.userService.userName$.subscribe((userName) => {
       const user = JSON.parse(localStorage.getItem('user') as string);
       this.UserID = user._id;
-      console.log("UserID",this.UserID , user._id);
     });
 
     this.subscriptions.push(sub1);
@@ -41,7 +40,6 @@ export class AccountoverviewComponent  implements OnInit{
     let sub2 = this.accountservices.getUserByID(this.UserID).subscribe((user) => {
 
       this.User = user;
-      console.log('succeessfuly', user);
     });
 
     this.subscriptions.push(sub2);
@@ -49,7 +47,6 @@ export class AccountoverviewComponent  implements OnInit{
 
     this.accountservices.getUserAddByID().subscribe(data=>{
       this.userAddress=data[0]
-      console.log(this.userAddress);
       
     })
   }

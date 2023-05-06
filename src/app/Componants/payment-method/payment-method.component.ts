@@ -89,7 +89,6 @@ export class PaymentMethodComponent implements OnInit {
 
     this.accountservices.getUserAddByID().subscribe(data => {
       this.userAddress = data[0]
-      console.log(this.userAddress);
 
     })
 
@@ -121,7 +120,6 @@ export class PaymentMethodComponent implements OnInit {
       key: 'pk_test_51MwpKwL91jneEfqmxDgzybtIj4as6QPKXd2R0kRxIGQovhXSzSChRdXJE5nsr21tQgQFGYjFXb227UvWuIhoI0LA00sWiPoUXi',
       locale: 'auto',
       token: function (stripeToken: any) {
-        console.log(stripeToken);
         paynemtStripe(stripeToken)
       }
     });
@@ -148,12 +146,9 @@ export class PaymentMethodComponent implements OnInit {
 
       let shipPrice = 50
       this.prdservice.addPayment(stripeToken, amount + 50, this.userAddress, shipPrice, this.paymentMethod, amount).subscribe((data: any) => {
-        console.log(amount);
 
-        console.log(this.data);
         if (data.data === 'success') {
           this.success = true
-          console.log(this.success);
 
           this.prdservice.removeCart(this.cartProducts._id).subscribe(data => {
             this.router.navigate(["/cart"])
@@ -164,7 +159,6 @@ export class PaymentMethodComponent implements OnInit {
 
         } else {
           this.failure = true
-          console.log('payfail');
         }
       })
     }
@@ -191,7 +185,6 @@ export class PaymentMethodComponent implements OnInit {
           key: 'pk_test_51MwpKwL91jneEfqmxDgzybtIj4as6QPKXd2R0kRxIGQovhXSzSChRdXJE5nsr21tQgQFGYjFXb227UvWuIhoI0LA00sWiPoUXi',
           locale: 'auto',
           token: function (stripeToken: any) {
-            console.log(stripeToken);
 
           }
         })

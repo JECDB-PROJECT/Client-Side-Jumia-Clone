@@ -37,7 +37,6 @@ export class EditaccountComponent {
     let sub1 = this.userService.userName$.subscribe((userName) => {
       const user = JSON.parse(localStorage.getItem('user') as string);
       this.UserID = user._id;
-      console.log("UserID",this.UserID , user._id);
     });
 
     this.subscriptions.push(sub1);
@@ -45,7 +44,6 @@ export class EditaccountComponent {
     let sub2 = this.accountservices.getUserByID(this.UserID).subscribe((user) => {
 
       this.User = user;
-      console.log('succeessfuly', user);
     });
 
     this.subscriptions.push(sub2);
@@ -94,7 +92,6 @@ export class EditaccountComponent {
 
   changePassword(val: string, valid: any) {
     let ChValid = this.validDataPassword(val);
-      console.log(ChValid);
     if (ChValid) {
     this.User.password = val;
 
@@ -112,7 +109,6 @@ export class EditaccountComponent {
       let sub3 = this.accountservices
         .updateUser(this.UserID, this.User)
         .subscribe((data) => {
-          console.log('data after check password', data);
           localStorage.removeItem('user')
           localStorage.setItem('user', JSON.stringify(data))
           this.storageService.removeItem('name')
@@ -131,7 +127,6 @@ export class EditaccountComponent {
       let sub4 = this.accountservices
         .updateUser(this.UserID, this.data)
         .subscribe((data) => {
-          console.log('date if not checkpassword..', data);
           localStorage.removeItem('user')
           localStorage.setItem('user', JSON.stringify(data))
           const name = data.name
